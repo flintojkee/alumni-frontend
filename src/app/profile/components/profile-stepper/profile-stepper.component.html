@@ -1,0 +1,107 @@
+<mat-horizontal-stepper [linear]="false" #stepper>
+  <mat-step [stepControl]="generalFormGroup">
+    <form [formGroup]="generalFormGroup">
+      <ng-template matStepLabel>Загальні дані</ng-template>
+      <div class="form__inputs-wrapper">
+        <mat-form-field>
+          <mat-label>Прізвище Ім'я По-батькові</mat-label>
+          <input matInput placeholder="" formControlName="fullName" required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Дата народження</mat-label>
+          <input formControlName="dateOfBirth" matInput [matDatepicker]="picker">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Телефон</mat-label>
+          <input matInput placeholder="" formControlName="phone">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Мобільний телефон</mat-label>
+          <input matInput placeholder="" formControlName="mobile">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Електронна адреса</mat-label>
+          <input matInput placeholder="" formControlName="email" required>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button mat-button matStepperNext>Далі</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="socialFormGroup">
+    <form [formGroup]="socialFormGroup">
+      <ng-template matStepLabel>Соціальні мережі</ng-template>
+      <div class="form__inputs-wrapper">
+        <mat-form-field>
+          <mat-label>Facebook</mat-label>
+          <input matInput placeholder="" formControlName="facebook">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>LinkedIn</mat-label>
+          <input matInput placeholder="" formControlName="linkedIn">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Skype</mat-label>
+          <input matInput placeholder="" formControlName="skype">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Telegram</mat-label>
+          <input matInput placeholder="" formControlName="telegram">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Viber</mat-label>
+          <input matInput placeholder="" formControlName="viber">
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="jobFormGroup">
+    <form [formGroup]="jobFormGroup">
+      <ng-template matStepLabel>Робота</ng-template>
+      <div class="form__inputs-wrapper">
+        <mat-form-field>
+          <mat-label>Назва</mat-label>
+          <input matInput placeholder="" formControlName="jobName">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Адреса</mat-label>
+          <input matInput placeholder="" formControlName="address">
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="educationFormGroup">
+    <form [formGroup]="educationFormGroup">
+      <ng-template matStepLabel>Освіта</ng-template>
+      <div class="form__inputs-wrapper">
+          <mat-checkbox formControlName="diplomaNaukma">Диплом НаУКМА</mat-checkbox>
+          <mat-checkbox formControlName="bachelor">Бакалавр</mat-checkbox>
+          <mat-checkbox formControlName="master">Магістр</mat-checkbox>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Готово</ng-template>
+    <p>Дякуємо!</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="sendData()">Надіслати дані</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

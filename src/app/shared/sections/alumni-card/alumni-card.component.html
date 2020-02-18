@@ -1,0 +1,18 @@
+<mat-card class="alumni-card">
+  <mat-card-header>
+    <div mat-card-avatar>
+      <img
+        class="alumni-card__image"
+        *ngIf="alumni.image_1920"
+        [src]="'data:image/png;base64,' + alumni.image_1920"
+        alt="alumni profile image"
+      />
+    </div>
+    <mat-card-title>{{ alumni.name }}</mat-card-title>
+    <mat-card-subtitle>{{ alumni.function }}</mat-card-subtitle>
+    <mat-card-subtitle>{{ alumni.email }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content *ngIf="false"> </mat-card-content>
+  <mat-card-actions *ngIf="false"> </mat-card-actions>
+</mat-card>

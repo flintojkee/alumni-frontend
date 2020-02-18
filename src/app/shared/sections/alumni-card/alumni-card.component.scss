@@ -1,0 +1,15 @@
+.alumni-card {
+  &__image {
+    width: 100%;
+    border-radius: 50%;
+    &--background {
+      max-height: 150px;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+.mat-card-avatar {
+  width: 80px;
+  height: 80px;
+}
