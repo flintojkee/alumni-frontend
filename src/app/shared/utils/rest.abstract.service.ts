@@ -1,7 +1,11 @@
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { AlumniUrls } from '@alm/app/config/api.config';
+import { environment } from '@alm/environments/environment';
+
 export abstract class RestService {
-  protected baseUrl = '';
+  protected baseUrl = environment.apiUrl;
+  alumniUrl = AlumniUrls;
   constructor(protected http: HttpClient) {}
 
   protected get<R>(relativeUrl: string): Observable<R> {

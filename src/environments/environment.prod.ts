@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: 'https://alumni-service-api.herokuapp.com/api/v1/'
 };

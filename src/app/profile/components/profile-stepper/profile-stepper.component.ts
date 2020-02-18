@@ -21,6 +21,7 @@ export class ProfileStepperComponent implements OnInit {
       dateOfBirth: ['', Validators.required],
       phone: [],
       mobile: [],
+      address: [],
       email: ['', [Validators.email, Validators.required]]
     });
     this.socialFormGroup = this.formBuilder.group({

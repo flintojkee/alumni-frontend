@@ -2,15 +2,13 @@
   <mat-toolbar color="primary">
     <span>Alumni service </span>
   </mat-toolbar>
-  <router-outlet></router-outlet>
-    <!-- <div *ngFor="let alumni of sortedAlumnies">
-      <alm-alumni-card [alumni]="alumni"> </alm-alumni-card
-    ></div>
-  <mat-paginator
-    [length]="length"
-    [pageSize]="pageSize"
-    [pageSizeOptions]="pageSizeOptions"
-    (page)="pageEvent = setAlumni($event)"
-  >
-  </mat-paginator> -->
+  <mat-drawer-container class="main">
+    <mat-drawer class="sidenav" mode="side" opened>
+        <a class="sidenav__link" [routerLink]="['/profile']" routerLinkActive="sidenav__link--active" >Profile</a>
+        <a class="sidenav__link" [routerLink]="['/alumni']" routerLinkActive="sidenav__link--active" >Alumni</a>
+    </mat-drawer>
+    <mat-drawer-content><router-outlet></router-outlet></mat-drawer-content>
+  </mat-drawer-container>
+
+
 </div>

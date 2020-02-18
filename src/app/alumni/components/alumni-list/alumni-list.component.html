@@ -1,0 +1,10 @@
+
+
+<cdk-virtual-scroll-viewport itemSize="120" class="alumni-list">
+  <alm-infinite-scroll (scrolled)="onScroll()" style="height: 1000px; overflow-y: auto">
+    <div class="alumni-list__element" *cdkVirtualFor="let alumni of alumni$">
+      <alm-alumni-card  [alumni]="alumni">
+      </alm-alumni-card>
+    </div>
+  </alm-infinite-scroll>
+</cdk-virtual-scroll-viewport>
