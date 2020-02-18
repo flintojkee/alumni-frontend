@@ -14,10 +14,10 @@ if (env === 'production') {
   app.use(forceSSL);
 }
 // Serve static files
-app.use(express.static(__dirname + '/www'));
+app.use(express.static(__dirname + '/dist/alumni-frontend'));
 // Send all requests to index.html
 app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/www/index.html'));
+  res.sendFile(path.join(__dirname + '/dist/alumni-frontend/index.html'));
 });
 
 // default Heroku port
