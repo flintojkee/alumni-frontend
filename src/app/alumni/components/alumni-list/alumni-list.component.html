@@ -1,10 +1,8 @@
-
-
-<cdk-virtual-scroll-viewport itemSize="120" class="alumni-list">
-  <alm-infinite-scroll (scrolled)="onScroll()" style="height: 1000px; overflow-y: auto">
-    <div class="alumni-list__element" *cdkVirtualFor="let alumni of alumni$">
-      <alm-alumni-card  [alumni]="alumni">
-      </alm-alumni-card>
-    </div>
-  </alm-infinite-scroll>
+<cdk-virtual-scroll-viewport class="alumni-list" itemSize="144">
+  <div class="alumni-list__element" *cdkVirtualFor="let alumni of dataSource">
+    <alm-alumni-card *ngIf="alumni" [alumni]="alumni"> </alm-alumni-card>
+  </div>
+  <div class="alumni-list__spinner">
+    <mat-spinner diameter="50" *ngIf="dataSource.isLoading"></mat-spinner>
+  </div>
 </cdk-virtual-scroll-viewport>

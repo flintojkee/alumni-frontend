@@ -1,6 +1,10 @@
 .alumni-list {
-  min-height: 1000px;
+  height: 800px;
   &__element {
     margin: 10px;
+  }
+  &__spinner {
+    display: flex;
+    justify-content: center;
   }
 }

@@ -1,27 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Alumni } from '../shared';
 import { AlumniService } from './services/alumni.service';
-
+import { untilDestroyed } from 'ngx-take-until-destroy';
 @Component({
   selector: 'alm-alumni',
   templateUrl: './alumni.component.html',
   styleUrls: ['./alumni.component.scss']
 })
-export class AlumniComponent implements OnInit {
-
-  alumni$: Observable<Alumni>;
-  offset = 0;
-  limit = 100;
-  tag = 'Alumni'
-  constructor(private alumniService: AlumniService) { }
+export class AlumniComponent implements OnInit, OnDestroy {
+  constructor() {}
 
   ngOnInit() {
-    this.initAlumni();
   }
-
-  initAlumni() {
-    this.alumni$ = this.alumniService.getAlumni(this.offset, this.limit, this.tag);
-  }
-
+  ngOnDestroy() {}
 }
