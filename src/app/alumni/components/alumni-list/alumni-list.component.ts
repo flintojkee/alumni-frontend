@@ -1,8 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy
-} from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Alumni } from '@alm/app/shared';
 import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 import { DataSource, CollectionViewer } from '@angular/cdk/collections';
@@ -30,7 +26,7 @@ export class AlumniDataSource extends DataSource<Alumni | undefined> {
   public isLoading = false;
   private lastPage = 0;
   private limit = 10;
-  private tag = 'Випускник';
+  private tag: 'Випускник' = 'Випускник';
   dataSource: Alumni;
   constructor(private alumniService: AlumniService) {
     super();
@@ -40,7 +36,6 @@ export class AlumniDataSource extends DataSource<Alumni | undefined> {
   connect(
     collectionViewer: CollectionViewer
   ): Observable<(Alumni | undefined)[] | ReadonlyArray<Alumni | undefined>> {
-
     this.subscription.add(
       collectionViewer.viewChange.subscribe((range) => {
         const currentPage = this._getPageForIndex(range.end);
@@ -60,7 +55,7 @@ export class AlumniDataSource extends DataSource<Alumni | undefined> {
   uploadMore(offset: number) {
     this.isLoading = true;
     this.alumniService
-      .getAlumni(offset * this.limit, this.limit, this.tag)
+      .getAlumni({ offset: offset * this.limit, limit: this.limit, tag: this.tag })
       .subscribe((res) => {
         this.isLoading = false;
         this.cachedAlumni = this.cachedAlumni.concat(res);

@@ -2,7 +2,7 @@
   <div class="alumni-list__element" *cdkVirtualFor="let alumni of dataSource">
     <alm-alumni-card *ngIf="alumni" [alumni]="alumni"> </alm-alumni-card>
   </div>
-  <div class="alumni-list__spinner">
+  <div class="spinner">
     <mat-spinner diameter="50" *ngIf="dataSource.isLoading"></mat-spinner>
   </div>
 </cdk-virtual-scroll-viewport>

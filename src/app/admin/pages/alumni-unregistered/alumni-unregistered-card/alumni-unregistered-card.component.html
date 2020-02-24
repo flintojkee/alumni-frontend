@@ -1,0 +1,17 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{ alm.name }}
+    </mat-panel-title>
+
+  </mat-expansion-panel-header>
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="generateInviteLink(alm.id)"
+    [disabled]="isLoading"
+  >
+    <mat-icon>link</mat-icon>
+  </button>
+  <div *ngIf="link">{{ link }}</div>
+</mat-expansion-panel>

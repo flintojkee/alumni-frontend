@@ -21,10 +21,30 @@ export class AlumniService extends RestService {
     this.alumni.next([...this.alumni.value, ...alumni]);
   }
 
-  getAlumni(offset: number, limit: number, tag?: string): Observable<Alumni[]> {
-    let url = `${this.alumniUrl.alumni}?offset=${offset}&limit=${limit}`;
-    if (tag) {
+  getAlumni(
+    {
+      offset,
+      limit,
+      tag,
+      is_activated
+    }:
+    {
+      offset?: number,
+      limit?: number,
+      tag?: 'Випускник',
+      is_activated?: 'False' | 'True'
+    }
+
+  ): Observable<Alumni[]> {
+    let url = `${this.alumniUrl.alumni}?`;
+    if (offset) {
+      url += `offset=${offset}`;
+    } else if (limit) {
+      url += `&limit=${limit}`;
+    } else if (tag) {
       url += `&tag=${tag}`;
+    } else if (is_activated) {
+      url += `&is_activated=${is_activated}`;
     }
     return this.get<Alumni[]>(`${url}`);
   }

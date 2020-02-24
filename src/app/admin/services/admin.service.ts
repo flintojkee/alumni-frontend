@@ -10,4 +10,10 @@ export class AdminService extends RestService {
   constructor(http: HttpClient) {
     super(http);
   }
+
+  getRegisterLink(id: number) {
+    return this.get<string>(this.adminUrl.registerLink.replace('{id}', `${id}`));
+  }
+
+
 }

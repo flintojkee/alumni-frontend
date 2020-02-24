@@ -1,10 +1,10 @@
-<mat-list>
-  <mat-list-item>
-    <div class="alumni-unregistered__item">
-      <p>Vasylenko Denys</p>
-      <button mat-flat-button color="primary">Згенерувати посилання запрошення</button>
+<mat-accordion>
+  <ng-container *ngIf="unregistredAlumni$ | async as alumni; else isLoading">
+    <alm-alumni-unregistered-card *ngFor="let alm of alumni" [alm]="alm"> </alm-alumni-unregistered-card>
+  </ng-container>
+  <ng-template #isLoading>
+    <div class="spinner">
+      <mat-spinner diameter="50"></mat-spinner>
     </div>
-  </mat-list-item>
-
-  <mat-divider></mat-divider>
-</mat-list>
+  </ng-template>
+</mat-accordion>
