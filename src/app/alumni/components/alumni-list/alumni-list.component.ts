@@ -60,6 +60,7 @@ export class AlumniDataSource extends DataSource<Alumni | undefined> {
         this.isLoading = false;
         this.cachedAlumni = this.cachedAlumni.concat(res);
         this.dataStream.next(this.cachedAlumni);
+        this.alumniService.setAlumni(res);
       });
   }
   private _getPageForIndex(i: number): number {

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://alumni-service-api.herokuapp.com/api/v1/'
+  apiUrl: 'https://alumni-service-api.herokuapp.com/api/v1/',
+  hostUrl: 'http://localhost:4200/'
 };
 
 /*

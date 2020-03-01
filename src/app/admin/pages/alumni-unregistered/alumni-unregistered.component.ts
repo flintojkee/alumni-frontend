@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, merge } from 'rxjs';
 import { Alumni } from '@alm/app/shared';
 import { AlumniService } from '@alm/app/alumni/services/alumni.service';
 import { untilDestroyed } from 'ngx-take-until-destroy';
@@ -11,9 +11,11 @@ import { AdminService } from '../../services/admin.service';
 })
 export class AlumniUnregisteredComponent implements OnInit {
   unregistredAlumni$: Observable<Alumni[]>;
-  constructor(private alumniService: AlumniService) { }
+  alumniInviteStatus$: Observable<any>;
+  constructor(private alumniService: AlumniService, private adminService: AdminService) { }
 
   ngOnInit() {
-    this.unregistredAlumni$ = this.alumniService.getAlumni({is_activated: 'False'});
+    this.unregistredAlumni$ = this.adminService.getAlumniUnregistered();
+
   }
 }

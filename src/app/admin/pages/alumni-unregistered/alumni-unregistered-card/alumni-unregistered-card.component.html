@@ -1,9 +1,11 @@
 <mat-expansion-panel>
   <mat-expansion-panel-header>
     <mat-panel-title>
-      {{ alm.name }}
+      <div>
+        <p>{{ alm.name }}</p>
+        <p>{{ alm.alumni_status }}</p>
+      </div>
     </mat-panel-title>
-
   </mat-expansion-panel-header>
   <button
     mat-flat-button
@@ -13,5 +15,29 @@
   >
     <mat-icon>link</mat-icon>
   </button>
-  <div *ngIf="link">{{ link }}</div>
+  <button
+    mat-raised-button
+    color="warn"
+    (click)="updateAlumniStatus(alm.id + '', inviteStatus.rejected)"
+    [disabled]="isLoading"
+  >
+    Відхилити запрошення
+  </button>
+  <a
+    target="_blank"
+    rel="noopener noreferrer"
+    [href]="
+      'http://crm.usic.org.ua/web#id=' +
+      alm.id +
+      '&action=129&model=res.partner&view_type=form&cids=&menu_id=100'
+    "
+  >
+    <button mat-flat-button color="secondary">
+      Odoo profile
+    </button>
+  </a>
+
+  <div *ngIf="link">
+    <a [href]="hostUrl + 'sign-up/' + link">{{ hostUrl + 'sign-up/' + link }}</a>
+  </div>
 </mat-expansion-panel>

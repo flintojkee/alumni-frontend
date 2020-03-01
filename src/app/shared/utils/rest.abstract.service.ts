@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AlumniUrls, AdminUrls } from '@alm/app/config/api.config';
 import { environment } from '@alm/environments/environment';
-
+import { map } from 'rxjs/operators';
 export abstract class RestService {
   protected baseUrl = environment.apiUrl;
   protected adminUrl = AdminUrls;
@@ -10,7 +10,7 @@ export abstract class RestService {
   constructor(protected http: HttpClient) {}
 
   protected get<R>(relativeUrl: string): Observable<R> {
-    return this.http.get<R>(this.baseUrl + relativeUrl);
+    return this.http.get<R>(this.baseUrl + relativeUrl).pipe(map(res => res['data']));
   }
 
   protected post<T, R>(relativeUrl: string, data: T, options?): Observable<any> {

@@ -22,7 +22,7 @@ export function requiredValidator(msg?: string): ValidatorFn {
   return (control: AbstractControl): ValidationMessage => {
     if (Validators.required(control) && Validators.required(control).required) {
       return {
-        required: msg || 'Required'
+        ['0']: msg + ' is required' || 'Required'
       };
     } else {
       return null;
@@ -34,7 +34,7 @@ export function minLengthValidator(msg?: string, minLength?: number): ValidatorF
   return (control: AbstractControl): ValidationMessage => {
     const validationErrors = Validators.minLength(minLength)(control);
 
-    return validationErrors ? { minLength: `${msg} ${minLength}` } : null;
+    return validationErrors ? { ['0']: `${msg} ${minLength}` } : null;
   };
 }
 
@@ -44,7 +44,7 @@ export function minValidator(msg?: string, min?: number): ValidatorFn {
       (control.value !== undefined && isNaN(control.value)) ||
       !isNumber(control.value) ||
       control.value < min;
-    return validationErrors ? { min: `${msg} ${min}` } : null;
+    return validationErrors ? { ['0']: `${msg} ${min}` } : null;
   };
 }
 
@@ -54,7 +54,7 @@ export function maxValidator(msg?: string, max?: number): ValidatorFn {
       (control.value !== undefined && isNaN(control.value)) ||
       !isNumber(control.value) ||
       control.value > max;
-    return validationErrors ? { max: `${msg} ${max}` } : null;
+    return validationErrors ? { ['0']: `${msg} ${max}` } : null;
   };
 }
 
@@ -62,7 +62,7 @@ export function maxLengthValidator(msg?: string, maxLength?: number): ValidatorF
   return (control: AbstractControl): ValidationMessage => {
     const validationErrors = Validators.maxLength(maxLength)(trimControl(control));
 
-    return validationErrors ? { maxLength: `${msg} ${maxLength}` } : null;
+    return validationErrors ? { ['0']: `${msg} ${maxLength}` } : null;
   };
 }
 
@@ -77,7 +77,7 @@ export function emailValidator(msg?: string, emailPattern?: string | RegExp): Va
       ? validatePattern(emailPattern, trimmedControl)
       : validatePattern(defaultPattern, trimmedControl);
 
-    return validationErrors ? { email: msg || 'Invalid email' } : null;
+    return validationErrors ? { ['0']: msg || 'Invalid email' } : null;
   };
 }
 
@@ -85,7 +85,7 @@ export function patternValidator(msg?: string, patternExpression?: string | RegE
   return (control: AbstractControl): ValidationMessage => {
     const validationErrors = validatePattern(patternExpression, trimControl(control));
 
-    return validationErrors ? { pattern: msg || 'Not match with pattern expression' } : null;
+    return validationErrors ? { ['0']: msg || 'Not match with pattern expression' } : null;
   };
 }
 
@@ -101,7 +101,7 @@ export function passwordValidator(msg?: string, customPattern?: string | RegExp)
 
     if (validationErrors) {
       return {
-        passwordPattern: msg || 'Password should contain uppercase, lowercase characters and number'
+        ['0']: msg || 'Password should contain uppercase, lowercase characters and number'
       };
     }
     return null;
@@ -114,7 +114,7 @@ export function passwordMatchValidator(password: AbstractControl, msg?: string):
     const confirmPasswordValue = control.value;
 
     return passwordValue !== confirmPasswordValue
-      ? { passwordMatch: msg || 'Passwords aren`t match' }
+      ? { ['0']: msg || 'Passwords aren`t match' }
       : null;
   };
 }

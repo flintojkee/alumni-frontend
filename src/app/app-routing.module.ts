@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
+import { SignUpComponent } from './auth/pages';
 
 const routes: Routes = [
+  {path: 'sign-up/:token', component: SignUpComponent},
 
   {
     path: 'profile',

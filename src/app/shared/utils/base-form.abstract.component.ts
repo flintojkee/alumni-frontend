@@ -1,15 +1,18 @@
-import {  Input, Output, EventEmitter } from '@angular/core';
+import {  Input, Output, EventEmitter, OnInit } from '@angular/core';
 
-import { IFormComponent } from '../models/forms';
+import { IFormComponent, ErrorMatcher } from '../models/forms';
 import { FormGroup } from '@angular/forms';
 import { validateForm } from '..';
 
-export abstract class BaseFormComponent<T> implements IFormComponent<T> {
+export class BaseFormComponent<T> implements IFormComponent<T> {
   @Input() formGroup: FormGroup;
   @Output() submittedForm = new EventEmitter<T>();
-  initFormControls(formGroup: FormGroup, props: any) {
-    props.map((el) => {
-      this[el] = formGroup.get(el);
+  matcher = new ErrorMatcher();
+  constructor() {
+  }
+  initFormControls() {
+    Object.keys(this.formGroup.controls).map((el) => {
+      this[el] = this.formGroup.get(el);
     });
   }
   @validateForm('formGroup')

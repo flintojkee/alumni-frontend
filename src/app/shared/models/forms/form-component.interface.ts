@@ -1,10 +1,18 @@
 import { EventEmitter } from '@angular/core';
-import { FormGroup, AbstractControl } from '@angular/forms';
+import { FormGroup, AbstractControl, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
+
+export class ErrorMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 export interface IFormComponent<T> {
   formGroup: FormGroup;
   submittedForm: EventEmitter<any>;
-  initFormControls(formGroup: FormGroup, props: AbstractControl[]): void;
+  matcher: ErrorMatcher;
   onSubmit(formData: T): void;
 }
 

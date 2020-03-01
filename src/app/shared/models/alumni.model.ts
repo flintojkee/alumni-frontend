@@ -1,3 +1,5 @@
+import { AlumniInviteStatus } from './alumni-invite-status.model';
+
 export interface Alumni {
   id: number;
   name: string;
@@ -17,4 +19,5 @@ export interface Alumni {
   master_year_in: boolean | string;
   master_year_out: boolean | string;
   image_1920: boolean | string;
+  alumni_status?: AlumniInviteStatus;
 }
