@@ -1,11 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  Input,
-  EventEmitter,
-  OnDestroy
-} from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Alumni, InviteStatus } from '@alm/app/shared';
 import { AdminService } from '@alm/app/admin/services/admin.service';
 import { untilDestroyed } from 'ngx-take-until-destroy';
@@ -38,6 +31,10 @@ export class AlumniUnregisteredCardComponent implements OnInit, OnDestroy {
   }
 
   updateAlumniStatus(odoo_contact_id: string, invite_status: InviteStatus) {
-    this.adminService.updateAlumniInviteStatus({ odoo_contact_id, invite_status }).subscribe(res => {})
+    this.adminService
+      .updateAlumniInviteStatus({ odoo_contact_id, invite_status })
+      .subscribe((res) => {
+
+      });
   }
 }

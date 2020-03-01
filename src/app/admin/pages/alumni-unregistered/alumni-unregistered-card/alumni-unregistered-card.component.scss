@@ -1,0 +1,27 @@
+.alumni-unregistired-card {
+  margin-bottom: 10px;
+  &__header {
+  }
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    &-buttons {
+      * {
+        margin-right: 10px;
+      }
+    }
+    &-invite-link {
+      margin-bottom: 15px;
+    }
+  }
+}
+
+.mat-badge-medium.mat-badge-overlap.mat-badge-before .mat-badge-content {
+  right: 10px;
+  left: unset;
+  top: 10px;
+  width: auto;
+  border-radius: 5px;
+  padding: 5px;
+  line-height: 13px;
+}

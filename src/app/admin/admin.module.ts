@@ -6,15 +6,16 @@ import { AdminComponent } from './admin.component';
 import { SharedModule } from '../shared';
 import { AlumniRegisteredComponent, AlumniUnregisteredComponent } from './pages';
 import { AlumniUnregisteredCardComponent } from './pages/alumni-unregistered/alumni-unregistered-card/alumni-unregistered-card.component';
-
-
+import { InviteStatusColorPipe } from './pipes/invite-status-color.pipe';
 
 @NgModule({
-  declarations: [AdminComponent, AlumniRegisteredComponent, AlumniUnregisteredComponent, AlumniUnregisteredCardComponent],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    SharedModule
-  ]
+  declarations: [
+    AdminComponent,
+    AlumniRegisteredComponent,
+    AlumniUnregisteredComponent,
+    AlumniUnregisteredCardComponent,
+    InviteStatusColorPipe
+  ],
+  imports: [CommonModule, AdminRoutingModule, SharedModule]
 })
-export class AdminModule { }
+export class AdminModule {}

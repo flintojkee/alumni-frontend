@@ -3,6 +3,9 @@ alm-alumni-card {
 }
 .main {
   min-height: 90vh;
+  &__content {
+    padding: 15px;
+  }
 }
 .sidenav {
   min-width: 200px;
