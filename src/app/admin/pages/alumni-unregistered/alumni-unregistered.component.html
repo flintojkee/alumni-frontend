@@ -1,6 +1,8 @@
+<alm-alumni-unregistred-filter></alm-alumni-unregistred-filter>
 <mat-accordion>
   <ng-container *ngIf="unregistredAlumni$ | async as alumni; else isLoading">
-    <alm-alumni-unregistered-card *ngFor="let alm of alumni" [alm]="alm"> </alm-alumni-unregistered-card>
+    <alm-alumni-unregistered-card *ngFor="let alm of alumni" [alm]="alm">
+    </alm-alumni-unregistered-card>
   </ng-container>
   <ng-template #isLoading>
     <div class="spinner">

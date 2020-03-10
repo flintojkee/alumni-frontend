@@ -1,16 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Alumni } from './shared';
-import { PageEvent } from '@angular/material/paginator';
+import { AuthService } from './auth/services';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'alumni-frontend';
-  constructor(private http: HttpClient) {
+  isAuth$: Observable<boolean>;
+  constructor(private authService: AuthService) {
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.isAuth$ = this.authService.isAuth$;
+  }
 }

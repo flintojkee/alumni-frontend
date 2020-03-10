@@ -4,6 +4,7 @@ import { OptionalType, fieldsValidators } from '@alm/app/shared';
 import { SignUpForm } from '@alm/app/shared/models/forms/sign-up.form';
 import { requiredValidator, emailValidator, minLengthValidator, passwordValidator, passwordMatchValidator } from '@alm/app/shared/ui';
 import { FormService } from '@alm/app/core/services/form.service';
+import { LoginForm } from '@alm/app/shared/models/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,20 @@ export class AuthFormService {
   createSignUpForm(): FormGroup {
     const initialValues: OptionalType<SignUpForm> = new SignUpForm();
     const validators: fieldsValidators<SignUpForm> = {
+      email: [requiredValidator('Email Address'), emailValidator()],
+      password: [
+        requiredValidator('Password'),
+        minLengthValidator('Minimum length of password is', 7),
+        passwordValidator()
+      ]
+    };
+    const controls = this.formService.createFormControls(initialValues, validators);
+    return this.formBuilder.group(controls);
+  }
+
+  createLoginForm(): FormGroup {
+    const initialValues: OptionalType<LoginForm> = new LoginForm();
+    const validators: fieldsValidators<LoginForm> = {
       email: [requiredValidator('Email Address'), emailValidator()],
       password: [
         requiredValidator('Password'),

@@ -1,5 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Alumni } from '@alm/app/shared';
 
 @Component({
   selector: 'alm-profile-stepper',
@@ -8,33 +9,53 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileStepperComponent implements OnInit {
+  @Input() user: Alumni;
   generalFormGroup: FormGroup;
   socialFormGroup: FormGroup;
   jobFormGroup: FormGroup;
   educationFormGroup: FormGroup;
   formGroup: FormGroup;
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
+    this.initGeneralFormGroup();
+    this.initSocialFormGroup();
+    this.initJobFormGroup();
+    this.initEducationFormGroup();
+    this.formGroup = this.formBuilder.group({
+      general: this.generalFormGroup,
+      social: this.socialFormGroup,
+      job: this.jobFormGroup,
+      education: this.educationFormGroup
+    });
+  }
+
+  initGeneralFormGroup() {
     this.generalFormGroup = this.formBuilder.group({
-      fullName: ['', Validators.required],
+      fullName: [this.user.name || '', Validators.required],
       dateOfBirth: ['', Validators.required],
       phone: [],
       mobile: [],
       address: [],
-      email: ['', [Validators.email, Validators.required]]
+      email: [this.user.email || '', [Validators.email, Validators.required]]
     });
+  }
+  initSocialFormGroup() {
     this.socialFormGroup = this.formBuilder.group({
-      facebook: [''],
-      linkedIn: [''],
+      facebook: [this.user.facebook_link || ''],
+      linkedIn: [this.user.linkedin_link || ''],
       skype: [''],
       telegram: [''],
       viber: ['']
     });
+  }
+  initJobFormGroup() {
     this.jobFormGroup = this.formBuilder.group({
       jobName: [''],
-      address: [''],
+      address: ['']
     });
+  }
+  initEducationFormGroup() {
     this.educationFormGroup = this.formBuilder.group({
       diplomaNaukma: [''],
       bachelor: [''],
@@ -48,17 +69,9 @@ export class ProfileStepperComponent implements OnInit {
       masterEntryYear: [''],
       masterFinishYear: ['']
     });
-    this.formGroup = this.formBuilder.group( {
-      general: this.generalFormGroup,
-      social: this.socialFormGroup,
-      job: this.jobFormGroup,
-      education:  this.educationFormGroup
-    })
-
   }
 
   sendData() {
     console.log(this.formGroup.value);
   }
-
 }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, merge } from 'rxjs';
 import { Alumni } from '@alm/app/shared';
 import { AlumniService } from '@alm/app/alumni/services/alumni.service';
-import { untilDestroyed } from 'ngx-take-until-destroy';
 import { AdminService } from '../../services/admin.service';
 
 @Component({

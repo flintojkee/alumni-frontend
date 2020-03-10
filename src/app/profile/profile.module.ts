@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ProfileRoutingModule } from './profile-routing.module';
-import { ProfileComponent } from './profile.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { ProfileStepperComponent } from './components/profile-stepper/profile-stepper.component';
 import { SharedModule } from '../shared';
 

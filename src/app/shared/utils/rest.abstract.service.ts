@@ -14,7 +14,7 @@ export abstract class RestService {
   }
 
   protected post<T, R>(relativeUrl: string, data: T, options?): Observable<any> {
-    return this.http.post<R>(this.baseUrl + relativeUrl, data, options);
+    return this.http.post<R>(this.baseUrl + relativeUrl, data, options).pipe(map(res => res['data']));
   }
   protected delete<T>(relativeUrl: string) {
     return this.http.delete<T>(this.baseUrl + relativeUrl);

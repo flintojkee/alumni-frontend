@@ -25,7 +25,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   setToken() {
     this.route.params.pipe(untilDestroyed(this)).subscribe((params) => {
-      this.token = params['token'];
+      this.token = params['token'].toString('utf-8');
     });
   }
 
@@ -33,7 +33,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   signUp(signUpForm: SignUpForm) {
     this.authService
-      .signUp({ ...signUpForm, odoo_contact_token: this.token })
+      .signUp({odoo_contact_token: this.token + '====', ...signUpForm })
       .pipe(untilDestroyed(this))
       .subscribe((res) => {
         console.log(res);
