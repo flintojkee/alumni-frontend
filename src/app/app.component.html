@@ -2,15 +2,17 @@
   <mat-toolbar color="primary" *ngIf="isAuth$ | async">
     <mat-icon>public</mat-icon>
     <span>Alumni service </span>
-    <a class="sidenav__link" [routerLink]="['/profile']" routerLinkActive="sidenav__link--active"
-      >Profile</a
-    >
-    <a class="sidenav__link" [routerLink]="['/alumni']" routerLinkActive="sidenav__link--active"
-      >Alumni</a
-    >
-    <a class="sidenav__link" [routerLink]="['/admin']" routerLinkActive="sidenav__link--active"
-      >Admin</a
-    >
+    <ng-container *ngIf="!(isOperator$ | async)">
+      <a class="sidenav__link" [routerLink]="['/profile']" routerLinkActive="sidenav__link--active"
+        >Profile</a
+      >
+      <a class="sidenav__link" [routerLink]="['/alumni']" routerLinkActive="sidenav__link--active"
+        >Alumni</a
+      >
+      <a class="sidenav__link" [routerLink]="['/admin']" routerLinkActive="sidenav__link--active"
+        >Admin</a
+      >
+    </ng-container>
   </mat-toolbar>
   <router-outlet></router-outlet>
   <!-- <mat-drawer-container class="main">

@@ -11,9 +11,11 @@ import { Observable } from 'rxjs';
 export class AppComponent implements OnInit {
   title = 'alumni-frontend';
   isAuth$: Observable<boolean>;
+  isOperator$: Observable<boolean>;
   constructor(private authService: AuthService) {
   }
   ngOnInit() {
     this.isAuth$ = this.authService.isAuth$;
+    this.isOperator$ = this.authService.isOperator$;
   }
 }

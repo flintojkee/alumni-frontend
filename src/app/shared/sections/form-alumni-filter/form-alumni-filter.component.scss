@@ -1,0 +1,18 @@
+.form-alumni-filter {
+  &__content {
+    display: flex;
+  }
+  &__row {
+    display: flex;
+    &:not(:last-child) {
+      margin-right: 15px;
+    }
+  }
+  &__col {
+    display: flex;
+    flex-direction: column;
+    &:not(:last-child) {
+      margin-right: 15px;
+    }
+  }
+}

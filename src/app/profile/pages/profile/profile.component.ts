@@ -13,8 +13,8 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.authService.user$.subscribe(res => {
-      this.user = res;
-    })
+      this.user = res as Alumni;
+    });
   }
 
 }

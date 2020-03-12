@@ -2,7 +2,7 @@ import {  Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 import { IFormComponent, ErrorMatcher } from '../models/forms';
 import { FormGroup } from '@angular/forms';
-import { validateForm } from '..';
+import { validateForm } from '../helpers/validate-form.decorator';
 
 export class BaseFormComponent<T> implements IFormComponent<T> {
   @Input() formGroup: FormGroup;

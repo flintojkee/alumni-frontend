@@ -18,6 +18,11 @@ export class AdminComponent implements OnInit {
       label: 'Не зареєстровані випускники',
       isActive: false
     },
+    {
+      path: 'alumni-update-requests',
+      label: 'Потребує модерації',
+      isActive: false
+    },
 
 
   ];

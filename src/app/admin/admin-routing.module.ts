@@ -5,6 +5,7 @@ import { AdminComponent } from './admin.component';
 import {
   AlumniRegisteredComponent,
   AlumniUnregisteredComponent,
+  AlumniUpdateRequestsComponent,
 } from './pages';
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       { path: 'alumni-registered', component: AlumniRegisteredComponent },
-      { path: 'alumni-unregistered', component: AlumniUnregisteredComponent }
+      { path: 'alumni-unregistered', component: AlumniUnregisteredComponent },
+      { path: 'alumni-update-requests', component: AlumniUpdateRequestsComponent}
     ]
   }
 ];

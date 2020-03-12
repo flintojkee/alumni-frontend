@@ -1,0 +1,121 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)">
+  <mat-card-content class="form-alumni-filter__content">
+    <div class="form-alumni-filter__row">
+      <div class="form-alumni-filter__col">
+        <mat-form-field>
+          <mat-label>Факультет</mat-label>
+          <mat-select [formControl]="bachelor_faculty">
+            <mat-select-trigger>
+              {{ bachelor_faculty.value }}
+            </mat-select-trigger>
+            <mat-option>Немає</mat-option>
+            <mat-option *ngFor="let filter of facultyList" [value]="filter">{{
+              filter
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Спеціальність</mat-label>
+          <mat-select [formControl]="bachelor_speciality">
+            <mat-select-trigger>
+              {{ bachelor_speciality.value }}
+            </mat-select-trigger>
+            <mat-option>Немає</mat-option>
+            <mat-option *ngFor="let filter of specialityList" [value]="filter">{{
+              filter
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-alumni-filter__col">
+        <mat-form-field>
+          <mat-label>Рік вступу</mat-label>
+          <mat-select [formControl]="bachelor_entry_year">
+            <mat-select-trigger>
+              {{ bachelor_entry_year.value }}
+            </mat-select-trigger>
+            <mat-option>Немає</mat-option>
+            <mat-option *ngFor="let filter of entryYears" [value]="filter">{{ filter }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Рік випуску</mat-label>
+          <mat-select [formControl]="bachelor_finish_year">
+            <mat-select-trigger>
+              {{ bachelor_finish_year.value }}
+            </mat-select-trigger>
+            <mat-option>Немає</mat-option>
+            <mat-option *ngFor="let filter of finishYears" [value]="filter">{{
+              filter
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="form-alumni-filter__row">
+      <div class="form-alumni-filter__col">
+        <mat-form-field>
+          <mat-label>Факультет</mat-label>
+          <mat-select [formControl]="master_faculty">
+            <mat-select-trigger>
+              {{ master_faculty.value }}
+            </mat-select-trigger>
+            <mat-option>Немає</mat-option>
+            <mat-option *ngFor="let filter of facultyList" [value]="filter">{{
+              filter
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Спеціальність</mat-label>
+          <mat-select [formControl]="master_speciality">
+            <mat-select-trigger>
+              {{ master_speciality.value }}
+            </mat-select-trigger>
+            <mat-option>Немає</mat-option>
+            <mat-option *ngFor="let filter of specialityList" [value]="filter">{{
+              filter
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-alumni-filter__col">
+        <mat-form-field>
+          <mat-label>Рік вступу</mat-label>
+          <mat-select [formControl]="master_entry_year">
+            <mat-select-trigger>
+              {{ master_entry_year.value }}
+            </mat-select-trigger>
+            <mat-option>Немає</mat-option>
+            <mat-option *ngFor="let filter of entryYears" [value]="filter">{{ filter }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Рік випуску</mat-label>
+          <mat-select [formControl]="master_finish_year">
+            <mat-select-trigger>
+              {{ master_finish_year.value }}
+            </mat-select-trigger>
+            <mat-option>Немає</mat-option>
+            <mat-option *ngFor="let filter of finishYears" [value]="filter">{{
+              filter
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="form-alumni-filter__row">
+      <div class="form-alumni-filter__col">
+        <mat-form-field>
+          <mat-label>Статус запрошення</mat-label>
+          <mat-select [formControl]="invite_status">
+            <mat-option>Немає</mat-option>
+            <mat-option *ngFor="let filter of inviteStatusList" [value]="filter">{{filter}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+  </mat-card-actions>
+</form>
