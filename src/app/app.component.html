@@ -16,14 +16,13 @@
         <a class="sidenav__link" [routerLink]="['/alumni']" routerLinkActive="sidenav__link--active"
           >Alumni</a
         >
-        <a class="sidenav__link" [routerLink]="['/admin']" routerLinkActive="sidenav__link--active"
-          >Admin</a
-        >
       </ng-container>
       <ng-template #operator>
         <div *ngIf="user$ | async as operator"
           >
-          {{ operator.username }} <small>({{ operator.is_admin ? 'Адмін' : 'Оператор' }})</small></div
+          {{ operator.username }} <small>({{ operator.is_admin ? 'Адмін' : 'Оператор' }})</small>
+          <button mat-button (click)="logout()">Вийти</button>
+          </div
         >
       </ng-template>
     </div>

@@ -4,6 +4,7 @@
   }
   &__row {
     display: flex;
+    margin-top: 15px;
     &:not(:last-child) {
       margin-right: 15px;
     }
@@ -15,4 +16,15 @@
       margin-right: 15px;
     }
   }
+}
+
+.mat-badge-medium.mat-badge-overlap.mat-badge-before .mat-badge-content {
+  top: -20px;
+  width: auto;
+  border-radius: 5px;
+  padding: 5px 15px;
+  line-height: 17px;
+  font-size: 13px;
+  font-weight: normal;
+  height: 27px
 }

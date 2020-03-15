@@ -8,18 +8,19 @@ import { LoginRequest } from '@alm/app/shared/models/api';
 import { LoginAdminResponse } from '@alm/app/shared/models/api/login-admin.response';
 import { map } from 'rxjs/operators';
 import { Operator } from '@alm/app/shared/models/operator.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService extends RestService {
-  private _user: BehaviorSubject<Alumni | Operator>
+  private _user: BehaviorSubject<Alumni | Operator>;
   private _isAuth: BehaviorSubject<boolean>;
   private _isOperator: BehaviorSubject<boolean>;
-  constructor(http: HttpClient) {
+  constructor(http: HttpClient, private router: Router) {
     super(http);
     this._isAuth = new BehaviorSubject(false);
-    this._isOperator = new BehaviorSubject(false);
+    this._isOperator = new BehaviorSubject(this.checkOperator());
     this._user = new BehaviorSubject<Alumni | Operator>(this.getUser());
   }
 
@@ -50,7 +51,10 @@ export class AuthService extends RestService {
   logout() {
     this._user.next(null);
     this.setAuth(false);
+    this._isOperator.next(false);
     localStorage.removeItem('user');
+    localStorage.removeItem('operator');
+    this.router.navigate(['login'])
   }
 
   signUp(signUp: SignUpRequest) {
@@ -65,6 +69,8 @@ export class AuthService extends RestService {
     return this.post<LoginRequest, LoginAdminResponse>(this.adminUrl.login, login).pipe(
       map((res: LoginAdminResponse) => {
         this.setUser(res.operator);
+        localStorage.setItem('operator', 'true');
+        this._isOperator.next(true);
         this.setAuth(true);
         return res;
       })
@@ -79,7 +85,10 @@ export class AuthService extends RestService {
   }
 
   setAuth(status: boolean) {
-    this._isOperator.next(status);
     this._isAuth.next(status);
+  }
+
+  checkOperator() {
+    return localStorage.getItem('operator') ? true : false;
   }
 }

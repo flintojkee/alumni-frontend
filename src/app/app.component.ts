@@ -22,4 +22,8 @@ export class AppComponent implements OnInit {
     this.isAuth$ = this.authService.isAuth$;
     this.isOperator$ = this.authService.isOperator$;
   }
+
+  logout() {
+    this.authService.logout();
+  }
 }
