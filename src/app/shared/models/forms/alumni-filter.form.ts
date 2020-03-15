@@ -10,6 +10,7 @@ export class AlumniFilterForm {
   master_entry_year: number;
   master_finish_year: number;
   invite_status?: InviteStatus;
+  user_confirmed?: boolean;
   constructor() {
     this.bachelor_faculty = null;
     this.bachelor_speciality = null;
@@ -20,6 +21,7 @@ export class AlumniFilterForm {
     this.master_entry_year = null;
     this.master_finish_year = null;
     this.invite_status = null;
+    this.user_confirmed = null;
   }
 
 

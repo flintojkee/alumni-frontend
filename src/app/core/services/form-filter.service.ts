@@ -10,7 +10,7 @@ import { OptionalType, fieldsValidators } from '@alm/app/shared';
 export class FormFilterService {
   constructor(private formService: FormService, private formBuilder: FormBuilder) {}
 
-  createAdminAlumniFilterForm(): FormGroup {
+  createAlumniFilterForm(): FormGroup {
     const initialValues: OptionalType<AlumniFilterForm> = new AlumniFilterForm();
     const validators: fieldsValidators<AlumniFilterForm> = {
       bachelor_faculty: [],
@@ -21,7 +21,8 @@ export class FormFilterService {
       master_speciality: [],
       master_entry_year: [],
       master_finish_year: [],
-      invite_status: []
+      invite_status: [],
+      user_confirmed: []
     };
     const controls = this.formService.createFormControls(initialValues, validators);
     return this.formBuilder.group(controls);

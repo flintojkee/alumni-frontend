@@ -30,12 +30,15 @@ export class AlumniUnregisteredCardComponent implements OnInit, OnDestroy {
       )
       .subscribe((res) => {
         this.link = res.token;
+        this.alm.alumni_status = InviteStatus.invited;
       });
   }
 
   updateAlumniStatus(odoo_contact_id: string, invite_status: InviteStatus) {
     this.adminService
       .updateAlumniInviteStatus({ odoo_contact_id, invite_status })
-      .subscribe((res) => {});
+      .subscribe((res) => {
+        this.alm.alumni_status = invite_status;
+      });
   }
 }

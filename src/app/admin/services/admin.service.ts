@@ -17,16 +17,28 @@ export class AdminService extends RestService {
     return this.get<AuthToken>(this.adminUrl.registerLink.replace('{id}', `${id}`));
   }
 
-  getAlumniUnregistered(filter?: AlumniFilterForm) {
-    const filters = Object.keys(filter).reduce(
-      (acc, cur) => (filter[cur] ? `${acc}&${cur}=${filter[cur]}` : acc),
-      ''
-    );
-    return this.get<Alumni[]>(this.alumniUrl.alumniUnregistered + '?' + filters);
+  getAlumniUnregistered({
+    offset,
+    limit,
+    filter,
+  }: {
+    offset?: number;
+    limit?: number;
+    filter?: AlumniFilterForm;
+  }) {
+    return this.get<Alumni[]>(this.alumniUrl.alumniUnregistered + '?' + this.getQuery({...filter, offset, limit}));
   }
 
-  getAlumniRegistered() {
-    return this.get<Alumni[]>(this.alumniUrl.alumniRegistered);
+  getAlumniRegistered({
+    offset,
+    limit,
+    filter,
+  }: {
+    offset?: number;
+    limit?: number;
+    filter?: AlumniFilterForm;
+  }) {
+    return this.get<Alumni[]>(this.alumniUrl.alumniRegistered + '?' + this.getQuery({...filter, offset, limit}));
   }
 
   getAlumniInviteStatus() {
@@ -37,6 +49,13 @@ export class AdminService extends RestService {
     return this.put<AlumniInviteStatus, AlumniInviteStatus>(
       this.adminUrl.alumniInviteStatus,
       status
+    );
+  }
+
+  getQuery(obj: any) {
+    return Object.keys(obj).reduce(
+      (acc, cur) => (obj[cur] ? `${acc}&${cur}=${obj[cur]}` : acc),
+      ''
     );
   }
 }

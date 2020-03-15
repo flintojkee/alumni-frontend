@@ -10,7 +10,7 @@ import { IFormComponent, formProperties, ErrorMatcher } from '@alm/app/shared/mo
 import { SignUpForm } from '@alm/app/shared/models/forms/sign-up.form';
 import { FormGroup, AbstractControl } from '@angular/forms';
 import { validateForm } from '@alm/app/shared';
-import { BaseFormComponent } from '@alm/app/shared/utils/base-form.abstract.component';
+import { BaseFormComponent } from '@alm/app/shared/utils/base-form';
 
 @Component({
   selector: 'alm-form-sign-up',

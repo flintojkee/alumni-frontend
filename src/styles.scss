@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+// @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 * {
   margin: 0;
   padding: 0;
@@ -23,4 +23,18 @@ body {
 
 .full-width {
   width: 100%;
+}
+
+.container {
+  padding: 0 23px;
+  max-width: 1304px;
+  margin: 0 auto;
+  min-width: 296px;
+}
+
+.fw {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
 }

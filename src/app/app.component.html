@@ -1,24 +1,40 @@
+<div class="header" *ngIf="isAuth$ | async">
+  <div class="container">
+    <div class="header__content">
+      <div class="fw">
+        <img class="header__logo" src="/assets/icons/logo.png" alt="naukma logo" />
+        <h1>Спільнота випускників НаУКМА</h1>
+      </div>
+
+      <ng-container *ngIf="!(isOperator$ | async); else operator">
+        <a
+          class="sidenav__link"
+          [routerLink]="['/profile']"
+          routerLinkActive="sidenav__link--active"
+          >Profile</a
+        >
+        <a class="sidenav__link" [routerLink]="['/alumni']" routerLinkActive="sidenav__link--active"
+          >Alumni</a
+        >
+        <a class="sidenav__link" [routerLink]="['/admin']" routerLinkActive="sidenav__link--active"
+          >Admin</a
+        >
+      </ng-container>
+      <ng-template #operator>
+        <div *ngIf="user$ | async as operator"
+          >
+          {{ operator.username }} <small>({{ operator.is_admin ? 'Адмін' : 'Оператор' }})</small></div
+        >
+      </ng-template>
+    </div>
+  </div>
+</div>
 <div class="container">
-  <mat-toolbar color="primary" *ngIf="isAuth$ | async">
-    <mat-icon>public</mat-icon>
-    <span>Alumni service </span>
-    <ng-container *ngIf="!(isOperator$ | async)">
-      <a class="sidenav__link" [routerLink]="['/profile']" routerLinkActive="sidenav__link--active"
-        >Profile</a
-      >
-      <a class="sidenav__link" [routerLink]="['/alumni']" routerLinkActive="sidenav__link--active"
-        >Alumni</a
-      >
-      <a class="sidenav__link" [routerLink]="['/admin']" routerLinkActive="sidenav__link--active"
-        >Admin</a
-      >
-    </ng-container>
-  </mat-toolbar>
   <router-outlet></router-outlet>
-  <!-- <mat-drawer-container class="main">
+</div>
+<!-- <mat-drawer-container class="main">
     <mat-drawer class="sidenav" mode="side" opened> </mat-drawer>
     <mat-drawer-content class="main__content">
 
     </mat-drawer-content>
   </mat-drawer-container> -->
-</div>

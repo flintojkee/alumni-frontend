@@ -4,10 +4,11 @@ import {
   ChangeDetectionStrategy,
   OnDestroy,
   Output,
-  EventEmitter
+  EventEmitter,
+  Input
 } from '@angular/core';
 import { AlumniFilterForm } from '../../models/forms/alumni-filter.form';
-import { BaseFormComponent } from '../../utils/base-form.abstract.component';
+import { BaseFormComponent } from '../../utils/base-form';
 import { IFormComponent, formProperties } from '../../models/forms';
 import { AbstractControl } from '@angular/forms';
 import { untilDestroyed } from 'ngx-take-until-destroy';
@@ -22,6 +23,8 @@ import { InviteStatus } from '../../models/alumni-invite-status.model';
 export class FormAlumniFilterComponent extends BaseFormComponent<AlumniFilterForm>
   implements OnInit, IFormComponent<AlumniFilterForm>, formProperties<AlumniFilterForm>, OnDestroy {
   @Output() changed = new EventEmitter<AlumniFilterForm>();
+  @Input() inviteStatus = false;
+  @Input() userConfirmed = false;
   bachelor_faculty: AbstractControl;
   bachelor_speciality: AbstractControl;
   bachelor_entry_year: AbstractControl;
@@ -31,13 +34,14 @@ export class FormAlumniFilterComponent extends BaseFormComponent<AlumniFilterFor
   master_entry_year: AbstractControl;
   master_finish_year: AbstractControl;
   invite_status: AbstractControl;
+  user_confirmed: AbstractControl;
   facultyList = [
-    'Факультет Інформатики',
-    'Факультет Правничих наук',
-    'Факультет Економічних наук',
-    'Факультет Природничих наук',
-    'Факультет Соціальних наук',
-    'Факультет Гуманітарних наук'
+    'Факультет інформатики',
+    'Факультет правничих наук',
+    'Факультет економічних наук',
+    'Факультет природничих наук',
+    'Факультет соціальних наук',
+    'Факультет гуманітарних наук'
   ];
   specialityList = [
     'Інженерія програмного забезпечення',

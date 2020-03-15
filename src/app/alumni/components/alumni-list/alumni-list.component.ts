@@ -26,7 +26,6 @@ export class AlumniDataSource extends DataSource<Alumni | undefined> {
   public isLoading = false;
   private lastPage = 0;
   private limit = 10;
-  private tag: 'Випускник' = 'Випускник';
   dataSource: Alumni;
   constructor(private alumniService: AlumniService) {
     super();
@@ -55,7 +54,7 @@ export class AlumniDataSource extends DataSource<Alumni | undefined> {
   uploadMore(offset: number) {
     this.isLoading = true;
     this.alumniService
-      .getAlumni({ offset: offset * this.limit, limit: this.limit, tag: this.tag })
+      .getAlumni({ offset: offset * this.limit, limit: this.limit})
       .subscribe((res) => {
         this.isLoading = false;
         this.cachedAlumni = this.cachedAlumni.concat(res);

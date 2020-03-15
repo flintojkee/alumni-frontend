@@ -1,6 +1,8 @@
-<mat-toolbar>
-  <span>Вхід для адміністратора</span>
-</mat-toolbar>
-<mat-card>
-  <alm-form-login [formGroup]="loginForm" (submittedForm)="login($event)"> </alm-form-login>
-</mat-card>
+<div class="login-admin">
+  <div class="login-admin__content">
+    <h2>Вхід для адміністратора</h2>
+    <mat-card>
+      <alm-form-login [formGroup]="loginForm" (submittedForm)="login($event)"> </alm-form-login>
+    </mat-card>
+  </div>
+</div>

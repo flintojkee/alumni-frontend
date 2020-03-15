@@ -1,13 +1,25 @@
 <mat-card>
   <mat-card-header>
-
-    <alm-alumni-unregistred-filter (formChanged)="filterChange($event)"></alm-alumni-unregistred-filter>
+    <alm-filter-alumni
+      [inviteStatus]="true"
+      (formChanged)="filterChange($event)"
+    ></alm-filter-alumni>
   </mat-card-header>
   <mat-card-content>
     <mat-accordion>
-      <ng-container *ngIf="unregistredAlumni$ | async as alumni; else isLoading">
-        <alm-alumni-unregistered-card *ngFor="let alm of alumni" [alm]="alm">
-        </alm-alumni-unregistered-card>
+      <ng-container *ngIf="dataSource; else isLoading">
+        <cdk-virtual-scroll-viewport class="alumni-list" itemSize="144">
+          <div class="alumni-list__element" *cdkVirtualFor="let alumni of dataSource">
+            <alm-alumni-unregistered-card  *ngIf="alumni" [alm]="alumni">
+            </alm-alumni-unregistered-card>
+          </div>
+          <div class="spinner">
+            <mat-spinner diameter="50" *ngIf="dataSource.isLoading"></mat-spinner>
+          </div>
+          <div *ngIf="dataSource.isEmpty" >
+            Не знайдено випускників
+          </div>
+        </cdk-virtual-scroll-viewport>
       </ng-container>
       <ng-template #isLoading>
         <div class="spinner">

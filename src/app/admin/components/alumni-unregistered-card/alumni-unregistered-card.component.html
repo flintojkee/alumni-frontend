@@ -11,18 +11,8 @@
     class="alumni-unregistired-card__header"
   >
     <mat-panel-title>
-      <div>
-        <p>{{ alm.name }}</p>
-        <p *ngIf="alm.function">Посада: {{ alm.function }}</p>
-        <p *ngIf="alm.bachelor_degree">
-          Бакалавр: <strong>{{ alm.bachelor_faculty }} </strong>{{ alm.bachelor_speciality }}
-          {{ alm.bachelor_year_in }} - {{ alm.bachelor_year_out }}
-        </p>
-        <p *ngIf="alm.master_degree">
-          Магістр: <strong>{{ alm.master_faculty }}</strong> {{ alm.master_speciality }} {{ alm.master_year_in }} -
-          {{ alm.bachelor_year_out }}
-        </p>
-      </div>
+      <alm-alumni-card [alumni]="alm">
+      </alm-alumni-card>
     </mat-panel-title>
   </mat-expansion-panel-header>
   <div class="alumni-unregistired-card__actions">
@@ -36,7 +26,7 @@
         Згенерувати запрошення
         <mat-icon>link</mat-icon>
       </button>
-      <div *ngIf="link">
+      <div *ngIf="link" class="alumni-unregistired-card__invite-link">
         <a [href]="hostUrl + 'sign-up/' + link">{{ hostUrl + 'sign-up/' + link }}</a>
       </div>
     </div>

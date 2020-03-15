@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { BaseFormComponent } from '@alm/app/shared/utils/base-form.abstract.component';
+import { BaseFormComponent } from '@alm/app/shared/utils/base-form';
 import { LoginForm, IFormComponent, SignUpForm, formProperties } from '@alm/app/shared/models/forms';
 import { AbstractControl } from '@angular/forms';
 
