@@ -13,7 +13,7 @@ import { IFormComponent, formProperties } from '../../models/forms';
 import { AbstractControl } from '@angular/forms';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { InviteStatus } from '../../models/alumni-invite-status.model';
-
+import { SpecialityList, FacultyList } from '@alm/app/shared/utils/filter-helper';
 @Component({
   selector: 'alm-form-alumni-filter',
   templateUrl: './form-alumni-filter.component.html',
@@ -35,20 +35,8 @@ export class FormAlumniFilterComponent extends BaseFormComponent<AlumniFilterFor
   master_finish_year: AbstractControl;
   invite_status: AbstractControl;
   user_confirmed: AbstractControl;
-  facultyList = [
-    'Факультет інформатики',
-    'Факультет правничих наук',
-    'Факультет економічних наук',
-    'Факультет природничих наук',
-    'Факультет соціальних наук',
-    'Факультет гуманітарних наук'
-  ];
-  specialityList = [
-    'Інженерія програмного забезпечення',
-    'Прикладна математика',
-    "Комп'ютерні науки",
-    'Системний аналіз'
-  ];
+  specialityList = SpecialityList;
+  facultyList = FacultyList;
   entryYears = this.getYears(1980, new Date().getFullYear());
   finishYears = this.getYears(new Date().getFullYear(), new Date().getFullYear() + 4);
   inviteStatusList: string[] = Object.values(InviteStatus);

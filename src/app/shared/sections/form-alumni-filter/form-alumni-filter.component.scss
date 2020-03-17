@@ -4,7 +4,7 @@
   }
   &__row {
     display: flex;
-    margin-top: 15px;
+    margin-top: 30px;
     &:not(:last-child) {
       margin-right: 15px;
     }
@@ -19,7 +19,7 @@
 }
 
 .mat-badge-medium.mat-badge-overlap.mat-badge-before .mat-badge-content {
-  top: -20px;
+  top: -30px;
   width: auto;
   border-radius: 5px;
   padding: 5px 15px;

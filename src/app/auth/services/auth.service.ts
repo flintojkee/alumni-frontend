@@ -77,8 +77,8 @@ export class AuthService extends RestService {
     );
   }
 
-  confirm(confirm: { alumni_uuid: string }): Observable<{ alumni: Alumni[] }> {
-    return this.post<{ alumni_uuid: string }, { alumni: Alumni[] }>(
+  confirm(confirm: { alumni_uuid: string }): Observable<{ alumni: Alumni }> {
+    return this.post<{ alumni_uuid: string }, { alumni: Alumni }>(
       this.alumniUrl.confirm,
       confirm
     );

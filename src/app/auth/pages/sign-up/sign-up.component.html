@@ -1,6 +1,12 @@
-<mat-toolbar>
-  <span>Sign up</span>
-</mat-toolbar>
-<mat-card class="my-card">
-  <alm-form-sign-up [formGroup]="signUpForm" (submittedForm)="signUp($event)"> </alm-form-sign-up>
-</mat-card>
+<div class="sign-up">
+  <div class="sign-up__content">
+    <h1>Дякуємо, що вирішили долучитись до спільноти випускників НаУКМА</h1>
+    <h2>
+      Для реєстрації введіть свою електронну адресу та пароль
+    </h2>
+    <mat-card class="sign-up__form">
+      <alm-form-sign-up [formGroup]="signUpForm" (submittedForm)="signUp($event)">
+      </alm-form-sign-up>
+    </mat-card>
+  </div>
+</div>

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AuthFormService, AuthService } from '../../services';
 import { SignUpForm } from '@alm/app/shared/models/forms/sign-up.form';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 
 @Component({
@@ -15,7 +15,8 @@ export class SignUpComponent implements OnInit, OnDestroy {
   constructor(
     private authFormService: AuthFormService,
     private authService: AuthService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {

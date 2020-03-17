@@ -10,11 +10,11 @@ export abstract class RestService {
   constructor(protected http: HttpClient) {}
 
   protected get<R>(relativeUrl: string): Observable<R> {
-    return this.http.get<R>(this.baseUrl + relativeUrl).pipe(map(res => res['data']));
+    return this.http.get<R>(this.baseUrl + relativeUrl);
   }
 
   protected post<T, R>(relativeUrl: string, data: T, options?): Observable<any> {
-    return this.http.post<R>(this.baseUrl + relativeUrl, data, options).pipe(map(res => res['data']));
+    return this.http.post<R>(this.baseUrl + relativeUrl, data, options);
   }
   protected delete<T>(relativeUrl: string) {
     return this.http.delete<T>(this.baseUrl + relativeUrl);

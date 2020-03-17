@@ -20,8 +20,11 @@ import { BaseFormComponent } from '@alm/app/shared/utils/base-form';
 })
 export class FormSignUpComponent extends BaseFormComponent<SignUpForm>
   implements OnInit, IFormComponent<SignUpForm>, formProperties<SignUpForm> {
+  hidePassword = true;
+  hideRetypedPassword = true;
   email: AbstractControl;
   password: AbstractControl;
+  retypedPassword: AbstractControl;
   constructor() {
     super();
   }

@@ -10,7 +10,7 @@ import { AbstractControl } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormLoginComponent extends BaseFormComponent<LoginForm>
-implements OnInit, IFormComponent<SignUpForm>, formProperties<SignUpForm> {
+implements OnInit, IFormComponent<LoginForm>, formProperties<LoginForm> {
 email: AbstractControl;
 password: AbstractControl;
 constructor() {

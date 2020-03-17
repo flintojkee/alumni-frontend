@@ -1,98 +1,253 @@
-<mat-horizontal-stepper [linear]="false" #stepper>
-  <mat-step [stepControl]="generalFormGroup">
-    <form [formGroup]="generalFormGroup">
-      <ng-template matStepLabel>Загальні дані</ng-template>
-      <div class="form__inputs-wrapper">
-        <mat-form-field>
-          <mat-label>Прізвище Ім'я По-батькові</mat-label>
-          <input matInput placeholder="" formControlName="fullName" required>
+<mat-horizontal-stepper [linear]="true" #stepper>
+  <mat-step [stepControl]="personalFormGroup">
+    <form [formGroup]="personalFormGroup">
+      <ng-template matStepLabel>Персональні дані</ng-template>
+      <div row>
+        <div [col]="8">
+          <div row>
+            <mat-form-field [col]="8">
+              <mat-label>Прізвище Ім'я По-батькові</mat-label>
+              <input matInput placeholder="" formControlName="fullName" required />
+            </mat-form-field>
+            <mat-form-field [col]="4">
+              <mat-label>Дата народження</mat-label>
+              <input formControlName="dateOfBirth" matInput [matDatepicker]="picker" required />
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div row>
+            <mat-form-field [col]="6">
+              <mat-label>Країна</mat-label>
+              <mat-select formControlName="country" required>
+                <mat-option *ngFor="let country of ['Україна']" [value]="country">{{
+                  country
+                }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field [col]="6">
+              <mat-label>Місто</mat-label>
+              <input matInput placeholder="" formControlName="city" required />
+            </mat-form-field>
+          </div>
+          <div row>
+            <mat-form-field [col]="6">
+              <mat-label>Мобільний телефон</mat-label>
+              <input matInput placeholder="" formControlName="mobile" required />
+            </mat-form-field>
+            <mat-form-field [col]="6">
+              <mat-label>Skype</mat-label>
+              <input matInput placeholder="" formControlName="skype" />
+            </mat-form-field>
+          </div>
+          <div row>
+            <mat-form-field [col]="6">
+              <mat-label>Telegram</mat-label>
+              <input matInput placeholder="" formControlName="telegram" />
+            </mat-form-field>
+            <mat-form-field [col]="6">
+              <mat-label>Viber</mat-label>
+              <input matInput placeholder="" formControlName="viber" />
+            </mat-form-field>
+          </div>
+        </div>
+        <div [col]="4">
+          <div class="form__image-wrapper">
+            <img
+              class="form__image"
+              [src]="user.image_1920 ? user.image_1920 : '/assets/icons/userpic.svg'"
+            />
+            <input
+              (change)="changeAvatar($event.target.files)"
+              accept="image/*"
+              formControlName="avatar"
+              type="file"
+              name="avatar"
+            />
+          </div>
+        </div>
+      </div>
+      <div row>
+        <mat-form-field [col]="10">
+          <mat-label>Facebook</mat-label>
+          <input matInput placeholder="" formControlName="facebook" />
         </mat-form-field>
-        <mat-form-field>
-          <mat-label>Дата народження</mat-label>
-          <input formControlName="dateOfBirth" matInput [matDatepicker]="picker">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Телефон</mat-label>
-          <input matInput placeholder="" formControlName="phone">
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Мобільний телефон</mat-label>
-          <input matInput placeholder="" formControlName="mobile">
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Адреса</mat-label>
-          <input matInput placeholder="" formControlName="address" required>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Електронна адреса</mat-label>
-          <input matInput placeholder="" formControlName="email" required>
+      </div>
+      <div row>
+        <mat-form-field [col]="10">
+          <mat-label>LinkedIn</mat-label>
+          <input matInput placeholder="" formControlName="linkedIn" />
         </mat-form-field>
       </div>
 
       <div>
-        <button mat-button matStepperNext>Далі</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="socialFormGroup">
-    <form [formGroup]="socialFormGroup">
-      <ng-template matStepLabel>Соціальні мережі</ng-template>
-      <div class="form__inputs-wrapper">
-        <mat-form-field>
-          <mat-label>Facebook</mat-label>
-          <input matInput placeholder="" formControlName="facebook">
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>LinkedIn</mat-label>
-          <input matInput placeholder="" formControlName="linkedIn">
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Skype</mat-label>
-          <input matInput placeholder="" formControlName="skype">
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Telegram</mat-label>
-          <input matInput placeholder="" formControlName="telegram">
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Viber</mat-label>
-          <input matInput placeholder="" formControlName="viber">
-        </mat-form-field>
-      </div>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="jobFormGroup">
-    <form [formGroup]="jobFormGroup">
-      <ng-template matStepLabel>Робота</ng-template>
-      <div class="form__inputs-wrapper">
-        <mat-form-field>
-          <mat-label>Назва</mat-label>
-          <input matInput placeholder="" formControlName="jobName">
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Адреса</mat-label>
-          <input matInput placeholder="" formControlName="address">
-        </mat-form-field>
-      </div>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button color="primary" mat-flat-button matStepperNext>Далі</button>
       </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="educationFormGroup">
     <form [formGroup]="educationFormGroup">
       <ng-template matStepLabel>Освіта</ng-template>
+      <div row>
+        <mat-checkbox formControlName="diplomaNaukma">Диплом НаУКМА</mat-checkbox>
+      </div>
+      <div [col]="12">
+        <mat-checkbox formControlName="bachelor">Бакалаврська програма</mat-checkbox>
+      </div>
+      <div [col]="12" *ngIf="educationFormGroup.controls.bachelor.value">
+        <div row>
+          <mat-form-field [col]="6">
+            <mat-label>Факультет</mat-label>
+            <mat-select formControlName="bachelorFaculty" required>
+              <mat-select-trigger>
+                {{ educationFormGroup.controls.bachelorFaculty.value }}
+              </mat-select-trigger>
+              <mat-option *ngFor="let filter of facultyList" [value]="filter">{{
+                filter
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field [col]="6">
+            <mat-label>Рік вступу</mat-label>
+            <mat-select formControlName="bachelorEntryYear" required>
+              <mat-select-trigger>
+                {{ educationFormGroup.controls.bachelorEntryYear.value }}
+              </mat-select-trigger>
+              <mat-option *ngFor="let filter of entryYears" [value]="filter">{{
+                filter
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div row>
+          <mat-form-field [col]="6">
+            <mat-label>Спеціальність</mat-label>
+            <mat-select formControlName="bachelorSpeciality" required>
+              <mat-select-trigger>
+                {{ educationFormGroup.controls.bachelorSpeciality.value }}
+              </mat-select-trigger>
+              <mat-option *ngFor="let filter of specialityList" [value]="filter">{{
+                filter
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field [col]="6">
+            <mat-label>Рік випуску</mat-label>
+            <mat-select formControlName="bachelorFinishYear">
+              <mat-select-trigger>
+                {{ educationFormGroup.controls.bachelorFinishYear.value }}
+              </mat-select-trigger>
+              <mat-option>Немає</mat-option>
+              <mat-option *ngFor="let filter of finishYears" [value]="filter">{{
+                filter
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div [col]="12">
+        <mat-checkbox formControlName="master">Магістерська програма</mat-checkbox>
+      </div>
+      <div [col]="12" *ngIf="educationFormGroup.controls.master.value">
+        <div row>
+          <mat-form-field [col]="6">
+            <mat-label>Факультет</mat-label>
+            <mat-select formControlName="masterFaculty" required>
+              <mat-select-trigger>
+                {{ educationFormGroup.controls.masterFaculty.value }}
+              </mat-select-trigger>
+              <mat-option *ngFor="let filter of facultyList" [value]="filter">{{
+                filter
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field [col]="6">
+            <mat-label>Рік вступу</mat-label>
+            <mat-select formControlName="masterEntryYear" required>
+              <mat-select-trigger>
+                {{ educationFormGroup.controls.masterEntryYear.value }}
+              </mat-select-trigger>
+              <mat-option *ngFor="let filter of entryYears" [value]="filter">{{
+                filter
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div row>
+          <mat-form-field [col]="6">
+            <mat-label>Спеціальність</mat-label>
+            <mat-select formControlName="masterSpeciality" required>
+              <mat-select-trigger>
+                {{ educationFormGroup.controls.masterSpeciality.value }}
+              </mat-select-trigger>
+              <mat-option *ngFor="let filter of specialityList" [value]="filter">{{
+                filter
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field [col]="6">
+            <mat-label>Рік випуску</mat-label>
+            <mat-select formControlName="masterFinishYear">
+              <mat-select-trigger>
+                {{ educationFormGroup.controls.masterFinishYear.value }}
+              </mat-select-trigger>
+              <mat-option>Немає</mat-option>
+              <mat-option *ngFor="let filter of finishYears" [value]="filter">{{
+                filter
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div>
+        <button color="primary" mat-flat-button matStepperPrevious>Back</button>
+        <button color="primary" mat-flat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <!-- <mat-step [stepControl]="socialFormGroup">
+    <form [formGroup]="socialFormGroup">
+      <ng-template matStepLabel>Соціальні мережі</ng-template>
       <div class="form__inputs-wrapper">
-          <mat-checkbox formControlName="diplomaNaukma">Диплом НаУКМА</mat-checkbox>
-          <mat-checkbox formControlName="bachelor">Бакалавр</mat-checkbox>
-          <mat-checkbox formControlName="master">Магістр</mat-checkbox>
+        <mat-form-field>
+          <mat-label>Facebook</mat-label>
+          <input matInput placeholder="" formControlName="facebook" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>LinkedIn</mat-label>
+          <input matInput placeholder="" formControlName="linkedIn" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Skype</mat-label>
+          <input matInput placeholder="" formControlName="skype" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Telegram</mat-label>
+          <input matInput placeholder="" formControlName="telegram" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Viber</mat-label>
+          <input matInput placeholder="" formControlName="viber" />
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step> -->
+  <mat-step [stepControl]="jobFormGroup">
+    <form [formGroup]="jobFormGroup">
+      <ng-template matStepLabel>Робота</ng-template>
+      <div class="form__inputs-wrapper">
+        <mat-form-field>
+          <mat-label>Назва</mat-label>
+          <input matInput placeholder="" formControlName="jobName" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Адреса</mat-label>
+          <input matInput placeholder="" formControlName="address" />
+        </mat-form-field>
       </div>
       <div>
         <button mat-button matStepperPrevious>Back</button>
@@ -100,6 +255,7 @@
       </div>
     </form>
   </mat-step>
+
   <mat-step>
     <ng-template matStepLabel>Готово</ng-template>
     <p>Дякуємо!</p>

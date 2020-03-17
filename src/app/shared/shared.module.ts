@@ -7,15 +7,18 @@ import { InfiniteScrollComponent } from './sections/infinite-scroll/infinite-scr
 import { RouterModule } from '@angular/router';
 import { FormAlumniFilterComponent } from './sections/form-alumni-filter/form-alumni-filter.component';
 import { FilterAlumniComponent } from './sections/filter-alumni/filter-alumni.component';
+import { DirectivesModule } from './directives';
+import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 
 @NgModule({
   declarations: [
     AlumniCardComponent,
     InfiniteScrollComponent,
     FormAlumniFilterComponent,
-    FilterAlumniComponent
+    FilterAlumniComponent,
+    SafeHtmlPipe
   ],
-  imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule, RouterModule, DirectivesModule],
   exports: [
     AlumniCardComponent,
     MaterialModule,
@@ -23,7 +26,9 @@ import { FilterAlumniComponent } from './sections/filter-alumni/filter-alumni.co
     ReactiveFormsModule,
     InfiniteScrollComponent,
     FormAlumniFilterComponent,
-    FilterAlumniComponent
+    FilterAlumniComponent,
+    DirectivesModule,
+    SafeHtmlPipe
   ]
 })
 export class SharedModule {}

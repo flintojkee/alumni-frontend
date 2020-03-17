@@ -21,9 +21,18 @@ export class AuthFormService {
         requiredValidator('Password'),
         minLengthValidator('Minimum length of password is', 7),
         passwordValidator()
-      ]
+      ],
+      retypedPassword: []
     };
+
     const controls = this.formService.createFormControls(initialValues, validators);
+
+    controls.retypedPassword.setValidators([
+      requiredValidator('Retype password'),
+      passwordValidator(),
+      passwordMatchValidator(controls.password)
+    ]);
+
     return this.formBuilder.group(controls);
   }
 
