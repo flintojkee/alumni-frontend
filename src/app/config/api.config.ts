@@ -12,3 +12,17 @@ export enum AdminUrls {
   alumniInviteStatus = 'alumni_invite_status/',
   login = 'operator_login/'
 }
+
+export enum ProfileUrls {
+  updateForm = 'update_form/',
+  updateFormHistory = '/update_form/history/{id}',
+  updateFormById = 'update_form/{id}'
+}
+
+export enum CompanyUrls {
+  companies = 'companies/'
+}
+
+export enum CountryUrls {
+  countries = 'countries/'
+}

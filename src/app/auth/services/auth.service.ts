@@ -54,7 +54,7 @@ export class AuthService extends RestService {
     this._isOperator.next(false);
     localStorage.removeItem('user');
     localStorage.removeItem('operator');
-    this.router.navigate(['login'])
+    this.router.navigate(['login']);
   }
 
   signUp(signUp: SignUpRequest) {
@@ -78,10 +78,10 @@ export class AuthService extends RestService {
   }
 
   confirm(confirm: { alumni_uuid: string }): Observable<{ alumni: Alumni }> {
-    return this.post<{ alumni_uuid: string }, { alumni: Alumni }>(
-      this.alumniUrl.confirm,
-      confirm
-    );
+    return this.post<
+      { alumni_uuid: string },
+      { alumni: Alumni; access_token: string; refresh_token: string }
+    >(this.alumniUrl.confirm, confirm);
   }
 
   setAuth(status: boolean) {

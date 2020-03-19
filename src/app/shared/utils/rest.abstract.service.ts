@@ -1,12 +1,14 @@
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { AlumniUrls, AdminUrls } from '@alm/app/config/api.config';
+import { AlumniUrls, AdminUrls, ProfileUrls, CompanyUrls } from '@alm/app/config/api.config';
 import { environment } from '@alm/environments/environment';
 import { map } from 'rxjs/operators';
 export abstract class RestService {
   protected baseUrl = environment.apiUrl;
   protected adminUrl = AdminUrls;
   protected alumniUrl = AlumniUrls;
+  protected profileUrl = ProfileUrls;
+  protected companyUrls = CompanyUrls;
   constructor(protected http: HttpClient) {}
 
   protected get<R>(relativeUrl: string): Observable<R> {
