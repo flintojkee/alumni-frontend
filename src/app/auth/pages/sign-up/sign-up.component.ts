@@ -12,11 +12,11 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
 export class SignUpComponent implements OnInit, OnDestroy {
   signUpForm: FormGroup;
   token: string;
+  isFormSend: boolean;
   constructor(
     private authFormService: AuthFormService,
     private authService: AuthService,
-    private route: ActivatedRoute,
-    private router: Router
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -38,6 +38,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
       .pipe(untilDestroyed(this))
       .subscribe((res) => {
         console.log(res);
+        this.isFormSend = true;
       });
   }
 }

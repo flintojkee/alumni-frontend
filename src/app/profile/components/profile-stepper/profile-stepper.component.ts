@@ -34,7 +34,7 @@ export class ProfileStepperComponent implements OnInit {
     this.bachelorMasterChange();
     this.educationFormGroup.controls.bachelor.setValue(this.user.bachelor_degree || null);
     this.educationFormGroup.controls.master.setValue(this.user.master_degree || null);
-    this.user.image_1920 = 'data:image/png;base64,' + this.user.image_1920;
+    this.user.image_1920 = 'data:image/jpeg;base64,' + this.user.image_1920;
     this.formGroup = this.formBuilder.group({
       personal: this.personalFormGroup,
       job: this.jobFormGroup,
@@ -239,7 +239,7 @@ export class ProfileStepperComponent implements OnInit {
       new UpdateAlumni(
         this.fullName,
         dateOfBirth,
-        this.user.image_1920.toString().replace('data:image/png;base64,', ''),
+        this.user.image_1920.toString().replace('data:image/jpeg;base64,', ''),
         this.country,
         this.city,
         this.mobile,
@@ -279,6 +279,6 @@ export class ProfileStepperComponent implements OnInit {
     );
   }
   formatDate(date: Date) {
-    return date.getFullYear() + '-' + date.getMonth() + 1 + '-' + date.getDate();
+    return date.getFullYear() + '-' + (+date.getMonth() + 1) + '-' + date.getDate();
   }
 }

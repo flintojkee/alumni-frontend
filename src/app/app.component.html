@@ -1,4 +1,4 @@
-<div class="header" *ngIf="isAuth$ | async">
+<div class="header" *ngIf="(isAuth$ | async) && !hideHeader">
   <div class="container">
     <div class="header__content">
       <div class="fw">
