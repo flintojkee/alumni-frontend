@@ -23,8 +23,9 @@ export class ProfileStepperComponent implements OnInit {
   specialityList = SpecialityList;
   facultyList = FacultyList;
   entryYears = this.getYears(1980, new Date().getFullYear());
-  finishYears = this.getYears(new Date().getFullYear(), new Date().getFullYear() + 4);
+  finishYears = this.getYears(1980, new Date().getFullYear() + 4);
   filteredCompanies: Observable<Company[]>;
+
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
@@ -162,7 +163,7 @@ export class ProfileStepperComponent implements OnInit {
 
   bachelorMasterChange() {
     this.educationFormGroup.controls.bachelor.valueChanges.subscribe((r) => {
-      console.log(r)
+      console.log(r);
       if (r) {
         this.educationFormGroup.controls.bachelorFaculty.setValidators(Validators.required);
         this.educationFormGroup.controls.bachelorSpeciality.setValidators(Validators.required);
@@ -278,7 +279,17 @@ export class ProfileStepperComponent implements OnInit {
       (company) => company.name.toLowerCase().indexOf(filterValue) === 0
     );
   }
+
   formatDate(date: Date) {
     return date.getFullYear() + '-' + (+date.getMonth() + 1) + '-' + date.getDate();
+  }
+
+  filterBirthDate = (d: Date | null): boolean => {
+    const currentYear = new Date().getFullYear();
+    return currentYear - d.getFullYear() > 16;
+  }
+
+  formatPhone() {
+    this.personalFormGroup.controls['mobile'].setValue(this.mobile.replace(/\D/g, ''));
   }
 }

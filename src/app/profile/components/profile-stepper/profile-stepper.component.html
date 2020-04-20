@@ -11,7 +11,7 @@
             </mat-form-field>
             <mat-form-field [col]="4">
               <mat-label>Дата народження</mat-label>
-              <input formControlName="dateOfBirth" matInput [matDatepicker]="picker" required />
+              <input [matDatepickerFilter]="filterBirthDate" formControlName="dateOfBirth" matInput [matDatepicker]="picker" required />
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -42,6 +42,7 @@
                 pattern="[0-9]{12}"
                 name="phone"
                 type="tel"
+                (keyup)="formatPhone()"
               />
               <mat-hint>+380503332211</mat-hint>
             </mat-form-field>

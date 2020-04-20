@@ -5,6 +5,7 @@ import { UpdateAlumni } from '@alm/app/shared/models/update-alumni.model';
 import { ProfileService } from '../../services/profile.service';
 import { CompanyService } from '@alm/app/core/services/company.service';
 import { untilDestroyed } from 'ngx-take-until-destroy';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'alm-profile',
@@ -17,7 +18,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private profileService: ProfileService,
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -35,12 +37,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ngOnDestroy() {}
 
   sendUserForm(form: UpdateAlumni) {
-    console.log(form);
     this.profileService
       .createUpdateForm(form)
       .pipe(untilDestroyed(this))
       .subscribe((res) => {
         this.companies = res;
+        this.authService.setUser(res);
+        this.router.navigate(['']);
       });
   }
 }
