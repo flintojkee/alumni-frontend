@@ -9,6 +9,7 @@ import { FormAlumniFilterComponent } from './sections/form-alumni-filter/form-al
 import { FilterAlumniComponent } from './sections/filter-alumni/filter-alumni.component';
 import { DirectivesModule } from './directives';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
+import { UdpateProfileCardComponent } from './sections/udpate-profile-card/udpate-profile-card.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     InfiniteScrollComponent,
     FormAlumniFilterComponent,
     FilterAlumniComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    UdpateProfileCardComponent
   ],
   imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule, RouterModule, DirectivesModule],
   exports: [
@@ -28,7 +30,8 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     FormAlumniFilterComponent,
     FilterAlumniComponent,
     DirectivesModule,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    UdpateProfileCardComponent
   ]
 })
 export class SharedModule {}

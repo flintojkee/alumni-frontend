@@ -1,0 +1,37 @@
+<div class="alumni-card">
+  <mat-card-header>
+    <div mat-card-avatar>
+      <img
+        class="alumni-card__image"
+        [src]="alumni.image ? 'data:image/png;base64,' + alumni.image : '/assets/icons/userpic.svg'"
+        alt="alumni profile image"
+      />
+    </div>
+    <div class="alumni-card__main-info">
+      <mat-card-title
+        ><a>{{ alumni.full_name_uk }}</a></mat-card-title
+      >
+      <mat-card-subtitle>Посада: {{ alumni.job_position || '' }}</mat-card-subtitle>
+      <mat-card-subtitle>Email: {{ alumni.email || '' }}</mat-card-subtitle>
+    </div>
+
+    <div class="alumni-card__side-info">
+      <mat-card-subtitle>
+        Бакалавр:
+        <strong>{{ alumni.bachelor_faculty || 'Не вказано' }} </strong
+        >{{ alumni.bachelor_speciality || 'Не вказано' }} {{ alumni.bachelor_entry_year || '^' }} -
+        {{ alumni.bachelor_finish_year || '^' }}
+      </mat-card-subtitle>
+      <mat-card-subtitle>
+        Магістр: <strong>{{ alumni.master_faculty || 'Не вказано' }} </strong
+        >{{ alumni.master_speciality || 'Не вказано' }} {{ alumni.master_entry_year || '^' }} -
+        {{ alumni.master_finish_year || '^' }}
+      </mat-card-subtitle>
+    </div>
+  </mat-card-header>
+  <mat-card-actions>
+    <div class="alumni-card__actions">
+      <button mat-raised-button color="primary" (click)="submit.emit($event)">Підтвердити</button>
+    </div>
+  </mat-card-actions>
+</div>

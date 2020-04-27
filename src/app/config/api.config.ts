@@ -10,7 +10,9 @@ export enum AlumniUrls {
 export enum AdminUrls {
   registerLink = 'register_link/{id}',
   alumniInviteStatus = 'alumni_invite_status/',
-  login = 'operator_login/'
+  login = 'operator_login/',
+  updateForm = 'update_form/',
+  confirmForm = 'update_form/confirm'
 }
 
 export enum ProfileUrls {

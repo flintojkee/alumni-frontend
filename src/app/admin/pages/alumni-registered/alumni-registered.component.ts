@@ -3,7 +3,6 @@ import { AdminService } from '../../services/admin.service';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Alumni } from '@alm/app/shared';
 import { AlumniFilterForm } from '@alm/app/shared/models/forms/alumni-filter.form';
-import { AlumniUnregisteredDataSource } from '..';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { BaseDataSource } from '@alm/app/shared/utils';
 export class AlumniRegisteredDataSource extends BaseDataSource<Alumni | undefined> {

@@ -1,4 +1,5 @@
 import { UpdateFormRequest } from './api/update-form.request';
+import { UpdateFormStatus } from '../enums/update-form.enum';
 
 export class UpdateAlumni implements UpdateFormRequest {
   full_name_uk: string;
@@ -27,6 +28,7 @@ export class UpdateAlumni implements UpdateFormRequest {
   alumni_id: number;
   operator_id: number;
   email: string;
+  form_status?: UpdateFormStatus;
   constructor(
     full_name_uk: string,
     date_of_birth: string,

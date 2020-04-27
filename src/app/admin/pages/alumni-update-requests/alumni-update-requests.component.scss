@@ -1,0 +1,24 @@
+alm-alumni-unregistred-filter {
+  width: 100%;
+}
+
+.alumni-list {
+  height: 800px;
+  &__element {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+      0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  }
+}
+
+.mat-badge-medium.mat-badge-overlap.mat-badge-before .mat-badge-content {
+  right: 10px;
+  left: unset;
+  top: 10px;
+  width: auto;
+  border-radius: 5px;
+  padding: 5px;
+  line-height: 13px;
+}

@@ -15,7 +15,7 @@
       <mat-card-title
         ><a>{{ alumni.name }}</a></mat-card-title
       >
-      <mat-card-subtitle>Посада: {{ alumni.function ? alumni.function : '' }}</mat-card-subtitle>
+      <mat-card-subtitle>Посада: {{ alumni.function || '' }}</mat-card-subtitle>
       <mat-card-subtitle>Email: {{ alumni.email ? alumni.email : '' }}</mat-card-subtitle>
     </div>
 
