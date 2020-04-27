@@ -24,7 +24,7 @@ export class AlumniUpdateRequestsComponent implements OnInit, OnDestroy {
 
   confirmForm(form: UpdateAlumni) {
     this.adminService
-      .confirmUpdateForm(form)``
+      .confirmUpdateForm(form)
       .pipe(untilDestroyed(this))
       .subscribe((res) => {
         console.log(res);
