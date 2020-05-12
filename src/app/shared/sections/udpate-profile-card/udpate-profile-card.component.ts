@@ -1,4 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  Input,
+  EventEmitter,
+  Output
+} from '@angular/core';
 import { UpdateAlumni } from '../../models/update-alumni.model';
 
 @Component({
@@ -9,10 +16,9 @@ import { UpdateAlumni } from '../../models/update-alumni.model';
 })
 export class UdpateProfileCardComponent implements OnInit {
   @Input() alumni: UpdateAlumni;
-  @Output() submit = new EventEmitter();
-  constructor() { }
+  @Output() submitted = new EventEmitter();
+  @Output() edit = new EventEmitter();
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

@@ -6,6 +6,7 @@ import { Alumni, AlumniInviteStatus } from '@alm/app/shared';
 import { AlumniFilterForm } from '@alm/app/shared/models/forms/alumni-filter.form';
 import { UpdateFormStatus } from '@alm/app/shared/enums/update-form.enum';
 import { UpdateAlumni } from '@alm/app/shared/models/update-alumni.model';
+import { UpdateFormConfirmRequest } from '@alm/app/shared/models/api/update-form-confirm.request';
 
 @Injectable({
   providedIn: 'root'
@@ -62,8 +63,8 @@ export class AdminService extends RestService {
     return this.get<UpdateAlumni[]>(this.adminUrl.updateForm + '?' + this.getQuery({ ...filter }));
   }
 
-  confirmUpdateForm(form: UpdateAlumni) {
-    return this.post<UpdateAlumni, UpdateAlumni>(this.adminUrl.confirmForm, form);
+  confirmUpdateForm(form: any) {
+    return this.post<UpdateFormConfirmRequest, UpdateFormConfirmRequest>(this.adminUrl.confirmForm, form);
   }
 
   getQuery(obj: any) {

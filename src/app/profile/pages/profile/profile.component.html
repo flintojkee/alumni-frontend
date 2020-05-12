@@ -1,7 +1,2 @@
-<alm-profile-stepper
-  *ngIf="user && companies"
-  [user]="user"
-  (updatedUser)="sendUserForm($event)"
-  [companies]="companies"
->
+<alm-profile-stepper *ngIf="user" [user]="user" (updatedUser)="sendUserForm($event)">
 </alm-profile-stepper>

@@ -18,25 +18,20 @@ export class ProfileComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private profileService: ProfileService,
-    private companyService: CompanyService,
     private router: Router
   ) {}
 
   ngOnInit() {
     this.authService.user$.subscribe((res) => {
       this.user = res as Alumni;
+      console.log(res);
     });
-    this.companyService
-      .getCompanies()
-      .pipe(untilDestroyed(this))
-      .subscribe((res) => {
-        this.companies = res;
-      });
   }
 
   ngOnDestroy() {}
 
   sendUserForm(form: UpdateAlumni) {
+    console.log(form);
     this.profileService
       .createUpdateForm(form)
       .pipe(untilDestroyed(this))

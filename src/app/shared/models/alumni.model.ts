@@ -27,7 +27,7 @@ export interface Alumni {
   master_speciality: boolean | string;
   master_year_in: boolean | string;
   master_year_out: boolean | string;
-  image_1920: boolean | string;
+  image_1920: string;
   alumni_id: number;
   alumni_email: string;
   alumni_uuid: string;

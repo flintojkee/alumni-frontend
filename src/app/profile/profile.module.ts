@@ -3,12 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { ProfileStepperComponent } from './components/profile-stepper/profile-stepper.component';
 import { SharedModule } from '../shared';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
-  declarations: [ProfileComponent, ProfileStepperComponent],
+  declarations: [ProfileComponent],
   imports: [CommonModule, ProfileRoutingModule, SharedModule],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'ua' }]
 })

@@ -1,0 +1,27 @@
+<form [formGroup]="formGroup" class="form" *ngIf="companies">
+  <div>
+    <mat-label>Компанія</mat-label>
+    <mat-form-field [col]="12">
+      <input
+        type="text"
+        placeholder="Pick one"
+        aria-label="Number"
+        matInput
+        [formControl]="formGroup.controls.jobName"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let company of filteredCompanies | async" [value]="company.name">
+          {{ company.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <span style="margin-bottom: 10px; color: #f44336" *ngIf="isCompanyError"
+      >Невідома компанія, додайте, будь ласка, компанцію в Odoo</span
+    >
+    <mat-form-field [col]="12">
+      <mat-label>Посада</mat-label>
+      <input matInput placeholder="" formControlName="position" />
+    </mat-form-field>
+  </div>
+</form>

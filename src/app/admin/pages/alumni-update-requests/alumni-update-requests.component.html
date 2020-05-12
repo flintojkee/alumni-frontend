@@ -10,7 +10,7 @@
         [matBadgeColor]="'primary'"
       >
         <alm-udpate-profile-card
-          (submit)="confirmForm(alumni)"
+          (edit)="editForm(alumni)"
           *ngIf="alumni"
           [alumni]="alumni"
         ></alm-udpate-profile-card>

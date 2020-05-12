@@ -1,0 +1,42 @@
+<div class="alumni-update-request">
+  <mat-card>
+    <mat-card-title>Анкета випускника</mat-card-title>
+    <form *ngIf="updateAlumni" [formGroup]="formGroup">
+      <alm-personal-data-form
+        (inittedFormGroup)="setPersonalDataFormGroup($event)"
+        #personalDataFormGroup
+        [user]="updateAlumni"
+      ></alm-personal-data-form>
+      <alm-education-form
+        (inittedFormGroup)="setEducationFormGroup($event)"
+        #educationalFormGroup
+        [user]="updateAlumni"
+      ></alm-education-form>
+      <alm-job-form
+        [isAdmin]="true"
+        (inittedFormGroup)="setJobFormGroup($event)"
+        [user]="updateAlumni"
+      >
+      </alm-job-form>
+      <mat-card-actions>
+        <div class="fw">
+          <div>
+            <button mat-raised-button color="primary">Зберегти</button>
+          </div>
+          <div>
+            <button mat-button>Пізніше</button>
+            <button mat-raised-button color="warn">Відхилити</button>
+            <button
+              [disabled]="formGroup.invalid && formGroup.dirty"
+              mat-raised-button
+              color="primary"
+              (click)="confirmForm()"
+            >
+              Прийняти
+            </button>
+          </div>
+        </div>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

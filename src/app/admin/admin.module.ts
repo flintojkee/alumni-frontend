@@ -8,6 +8,7 @@ import { AlumniRegisteredComponent, AlumniUnregisteredComponent } from './pages'
 import { AlumniUnregisteredCardComponent } from './components/alumni-unregistered-card/alumni-unregistered-card.component';
 import { InviteStatusColorPipe } from './pipes/invite-status-color.pipe';
 import { AlumniUpdateRequestsComponent } from './pages/alumni-update-requests/alumni-update-requests.component';
+import { AlumniUpdateRequestComponent } from './pages/alumni-update-request/alumni-update-request.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AlumniUpdateRequestsComponent } from './pages/alumni-update-requests/al
     AlumniUnregisteredComponent,
     AlumniUnregisteredCardComponent,
     InviteStatusColorPipe,
-    AlumniUpdateRequestsComponent
+    AlumniUpdateRequestsComponent,
+    AlumniUpdateRequestComponent
   ],
   imports: [CommonModule, AdminRoutingModule, SharedModule]
 })

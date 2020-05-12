@@ -1,4 +1,5 @@
-export interface UpdateFormRequest {
+export interface UpdateFormConfirmRequest {
+  form_id: number;
   name: string;
   birth_date: string;
   image_1920: string;
@@ -10,6 +11,7 @@ export interface UpdateFormRequest {
   viber: string;
   facebook_link: string;
   linkedin_link: string;
+  diploma_naukma: boolean;
   bachelor_degree: boolean;
   bachelor_faculty: string;
   bachelor_speciality: string;
@@ -21,7 +23,7 @@ export interface UpdateFormRequest {
   master_year_in: string;
   master_year_out: string;
   parent_id: number;
-  company_name: string;
   function: string;
   alumni_id: number;
+  operator_id: number;
 }

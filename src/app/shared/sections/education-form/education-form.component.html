@@ -1,0 +1,112 @@
+<form *ngIf="formGroup" [formGroup]="formGroup" class="form">
+  <ng-template matStepLabel>Освіта</ng-template>
+  <div>
+    <div row>
+      <mat-checkbox formControlName="diplomaNaukma">Диплом НаУКМА</mat-checkbox>
+    </div>
+    <div [col]="12">
+      <mat-checkbox formControlName="bachelor">Бакалаврська програма</mat-checkbox>
+    </div>
+    <div [col]="12" *ngIf="formGroup.controls.bachelor.value">
+      <div row>
+        <mat-form-field [col]="6">
+          <mat-label>Факультет</mat-label>
+          <mat-select formControlName="bachelorFaculty" required>
+            <mat-select-trigger>
+              {{ formGroup.controls.bachelorFaculty.value }}
+            </mat-select-trigger>
+            <mat-option *ngFor="let filter of facultyList" [value]="filter">{{
+              filter
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field [col]="6">
+          <mat-label>Рік вступу</mat-label>
+          <mat-select formControlName="bachelorEntryYear" required>
+            <mat-select-trigger>
+              {{ formGroup.controls.bachelorEntryYear.value }}
+            </mat-select-trigger>
+            <mat-option *ngFor="let filter of entryYears" [value]="filter">{{ filter }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div row>
+        <mat-form-field [col]="6">
+          <mat-label>Спеціальність</mat-label>
+          <mat-select formControlName="bachelorSpeciality" required>
+            <mat-select-trigger>
+              {{ formGroup.controls.bachelorSpeciality.value }}
+            </mat-select-trigger>
+            <mat-option *ngFor="let filter of specialityList" [value]="filter">{{
+              filter
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field [col]="6">
+          <mat-label>Рік випуску</mat-label>
+          <mat-select formControlName="bachelorFinishYear">
+            <mat-select-trigger>
+              {{ formGroup.controls.bachelorFinishYear.value }}
+            </mat-select-trigger>
+            <mat-option>Немає</mat-option>
+            <mat-option *ngFor="let filter of finishYears" [value]="filter">{{
+              filter
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div [col]="12">
+      <mat-checkbox formControlName="master">Магістерська програма</mat-checkbox>
+    </div>
+    <div [col]="12" *ngIf="formGroup.controls.master.value">
+      <div row>
+        <mat-form-field [col]="6">
+          <mat-label>Факультет</mat-label>
+          <mat-select formControlName="masterFaculty" required>
+            <mat-select-trigger>
+              {{ formGroup.controls.masterFaculty.value }}
+            </mat-select-trigger>
+            <mat-option *ngFor="let filter of facultyList" [value]="filter">{{
+              filter
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field [col]="6">
+          <mat-label>Рік вступу</mat-label>
+          <mat-select formControlName="masterEntryYear" required>
+            <mat-select-trigger>
+              {{ formGroup.controls.masterEntryYear.value }}
+            </mat-select-trigger>
+            <mat-option *ngFor="let filter of entryYears" [value]="filter">{{ filter }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div row>
+        <mat-form-field [col]="6">
+          <mat-label>Спеціальність</mat-label>
+          <mat-select formControlName="masterSpeciality" required>
+            <mat-select-trigger>
+              {{ formGroup.controls.masterSpeciality.value }}
+            </mat-select-trigger>
+            <mat-option *ngFor="let filter of specialityList" [value]="filter">{{
+              filter
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field [col]="6">
+          <mat-label>Рік випуску</mat-label>
+          <mat-select formControlName="masterFinishYear">
+            <mat-select-trigger>
+              {{ formGroup.controls.masterFinishYear.value }}
+            </mat-select-trigger>
+            <mat-option>Немає</mat-option>
+            <mat-option *ngFor="let filter of finishYears" [value]="filter">{{
+              filter
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</form>

@@ -6,6 +6,7 @@ import {
   AlumniRegisteredComponent,
   AlumniUnregisteredComponent,
   AlumniUpdateRequestsComponent,
+  AlumniUpdateRequestComponent,
 } from './pages';
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
     children: [
       { path: 'alumni-registered', component: AlumniRegisteredComponent },
       { path: 'alumni-unregistered', component: AlumniUnregisteredComponent },
-      { path: 'alumni-update-requests', component: AlumniUpdateRequestsComponent}
+      { path: 'alumni-update-requests', component: AlumniUpdateRequestsComponent},
+      { path: 'alumni-update-requests/:id', component: AlumniUpdateRequestComponent}
     ]
   }
 ];

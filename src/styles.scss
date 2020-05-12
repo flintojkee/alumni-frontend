@@ -80,3 +80,33 @@ body {
 .col-12 {
   width: 100%;
 }
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &__image {
+    width: 150px;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 10px;
+    &-wrapper {
+      input {
+        margin: 0 auto;
+        display: block;
+      }
+    }
+  }
+  &__button {
+    &:not(:last-child) {
+      margin-right: 15px;
+    }
+  }
+}
+
+mat-form-field {
+  &:not(:last-child) {
+    margin-right: 15px;
+  }
+}

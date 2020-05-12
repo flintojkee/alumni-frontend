@@ -1,0 +1,66 @@
+<mat-horizontal-stepper [linear]="true" #stepper>
+  <mat-step [stepControl]="formGroup?.controls?.personal" class="step">
+    <ng-template matStepLabel>Персональні дані</ng-template>
+    <alm-personal-data-form
+      (inittedFormGroup)="setPersonalDataFormGroup($event)"
+      #personalDataFormGroup
+      [user]="user"
+    ></alm-personal-data-form>
+    <div>
+      <button
+        [disabled]="!formGroup?.controls?.personal.valid && formGroup?.controls?.personal.dirty"
+        (click)="formGroup?.controls?.personal.markAsDirty()"
+        color="primary"
+        mat-flat-button
+        matStepperNext
+      >
+        Далі
+      </button>
+    </div>
+  </mat-step>
+  <mat-step [stepControl]="formGroup?.controls?.education" class="step">
+    <ng-template matStepLabel>Дані про освіту</ng-template>
+    <alm-education-form
+      (inittedFormGroup)="setEducationFormGroup($event)"
+      #educationalFormGroup
+      [user]="user"
+    ></alm-education-form>
+    <div>
+      <button class="form__button" color="primary" mat-flat-button matStepperPrevious>
+        Назад
+      </button>
+      <button
+        [disabled]="!formGroup?.controls?.education.valid && formGroup?.controls?.education.dirty"
+        class="form__button"
+        color="primary"
+        mat-flat-button
+        matStepperNext
+      >
+        Далі
+      </button>
+    </div>
+  </mat-step>
+  <mat-step [stepControl]="formGroup?.controls?.job" class="step">
+    <ng-template matStepLabel>Робота</ng-template>
+    <alm-job-form [user]="user" (inittedFormGroup)="setJobFormGroup($event)"></alm-job-form>
+    <div>
+      <button class="form__button" color="primary" mat-flat-button matStepperPrevious>
+        Назад
+      </button>
+      <button
+        class="form__button"
+        color="accent"
+        mat-flat-button
+        matStepperNext
+        (click)="sendData()"
+      >
+        Надіслати дані
+      </button>
+    </div>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Готово</ng-template>
+    <h1>Вітаємо! Реєстрацію завершено!</h1>
+  </mat-step>
+</mat-horizontal-stepper>
