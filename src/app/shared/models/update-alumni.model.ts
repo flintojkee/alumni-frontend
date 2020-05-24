@@ -13,6 +13,7 @@ export class UpdateAlumni implements UpdateFormRequest {
   viber: string;
   facebook_link: string;
   linkedin_link: string;
+  diploma_naukma: boolean;
   bachelor_degree: boolean;
   bachelor_faculty: string;
   bachelor_speciality: string;
@@ -41,6 +42,7 @@ export class UpdateAlumni implements UpdateFormRequest {
     $viber: string,
     $facebook_link: string,
     $linkedin_link: string,
+    $diploma_naukma: boolean,
     $bachelor_degree: boolean,
     $bachelor_faculty: string,
     $bachelor_speciality: string,
@@ -67,6 +69,7 @@ export class UpdateAlumni implements UpdateFormRequest {
     this.viber = $viber;
     this.facebook_link = $facebook_link;
     this.linkedin_link = $linkedin_link;
+    this.diploma_naukma = $diploma_naukma || false;
     this.bachelor_degree = $bachelor_degree;
     this.bachelor_faculty = $bachelor_faculty;
     this.bachelor_speciality = $bachelor_speciality;

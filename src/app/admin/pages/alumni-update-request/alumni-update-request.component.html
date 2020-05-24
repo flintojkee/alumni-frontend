@@ -21,10 +21,19 @@
       <mat-card-actions>
         <div class="fw">
           <div>
-            <button mat-raised-button color="primary">Зберегти</button>
+            <button
+              [disabled]="formGroup.invalid && formGroup.dirty"
+              mat-raised-button
+              color="primary"
+              (click)="saveForm()"
+            >
+              Зберегти
+            </button>
           </div>
           <div>
-            <button mat-button>Пізніше</button>
+            <a [routerLink]="['alumni-update-requests']">
+              <button mat-button (click)="goBack()">Пізніше</button>
+            </a>
             <button mat-raised-button color="warn">Відхилити</button>
             <button
               [disabled]="formGroup.invalid && formGroup.dirty"

@@ -11,7 +11,7 @@ import { JobFormComponent } from '@alm/app/shared/sections/job-form/job-form.com
 import { AdminService } from '../../services/admin.service';
 import { Operator } from '@alm/app/shared/models/operator.model';
 import { AuthService } from '@alm/app/auth/services';
-
+import { Location } from '@angular/common';
 @Component({
   templateUrl: './alumni-update-request.component.html',
   styleUrls: ['./alumni-update-request.component.scss']
@@ -26,24 +26,27 @@ export class AlumniUpdateRequestComponent implements OnInit, OnDestroy {
   personalDataFormComponent: PersonalDataFormComponent;
   @ViewChild('jobFormComponent', { static: false, read: JobFormComponent })
   jobFormComponent: JobFormComponent;
+  formId: number;
   constructor(
     private updateRequestsService: UpdateRequestsService,
     private route: ActivatedRoute,
     private router: Router,
     private adminService: AdminService,
-    private authService: AuthService
+    private authService: AuthService,
+    private location: Location
   ) {}
 
   ngOnInit() {
     this.route.params
       .pipe(
-        switchMap((params) =>
-          this.updateRequestsService.updateRequests.pipe(
+        switchMap((params) => {
+          this.formId = +params['id'];
+          return this.updateRequestsService.updateRequests.pipe(
             map((requests: UpdateAlumni[]) => {
               return requests.find((r) => r.form_id === +params['id']);
             })
-          )
-        ),
+          );
+        }),
         untilDestroyed(this)
       )
       .subscribe((res: UpdateAlumni) => {
@@ -82,47 +85,7 @@ export class AlumniUpdateRequestComponent implements OnInit, OnDestroy {
   }
 
   confirmForm() {
-    // console.log(this.formGroup);
-    // const dateOfBirth = this.formatDate(this.personalFormGroupControls.dateOfBirth.value);
-    // const updateAlumni = new UpdateAlumni(
-    //   this.personalFormGroupControls.fullName.value,
-    //   dateOfBirth,
-    //   this.updateAlumni.image_1920.toString().replace('data:image/jpeg;base64,', ''),
-    //   this.personalFormGroupControls.country.value,
-    //   this.personalFormGroupControls.city.value,
-    //   this.personalFormGroupControls.mobile.value,
-    //   this.personalFormGroupControls.skype.value,
-    //   this.personalFormGroupControls.telegram.value,
-    //   this.personalFormGroupControls.viber.value,
-    //   this.personalFormGroupControls.facebook.value,
-    //   this.personalFormGroupControls.linkedIn.value,
-    //   this.educationFormGroupControls.bachelor.value,
-    //   this.educationFormGroupControls.bachelorFaculty.value,
-    //   this.educationFormGroupControls.bachelorSpeciality.value,
-    //   this.educationFormGroupControls.bachelorEntryYear.value,
-    //   this.educationFormGroupControls.bachelorFinishYear.value,
-    //   this.educationFormGroupControls.master.value,
-    //   this.educationFormGroupControls.masterFaculty.value,
-    //   this.educationFormGroupControls.masterSpeciality.value,
-    //   this.educationFormGroupControls.masterEntryYear.value,
-    //   this.educationFormGroupControls.masterFinishYear.value,
-    //   this.jobFormGroupControls.jobId.value,
-    //   this.jobFormGroupControls.jobName.value,
-    //   this.jobFormGroupControls.position.value,
-    //   this.updateAlumni.alumni_id
-    // );
-
     if (this.formGroup.valid) {
-      // for (const key in updateAlumni) {
-      //   if (updateAlumni.hasOwnProperty(key)) {
-      //     if (updateAlumni[key] === null) {
-      //       updateAlumni[key] = false;
-      //     }
-      //   }
-      // }
-      // if (updateAlumni.image_1920 === 'false') {
-      //   delete updateAlumni.image_1920;
-      // }
       this.adminService
         .confirmUpdateForm({
           form_id: this.updateAlumni.form_id,
@@ -139,7 +102,70 @@ export class AlumniUpdateRequestComponent implements OnInit, OnDestroy {
     }
   }
 
+  saveForm() {
+    // console.log(this.formGroup);
+    const dateOfBirth = this.formatDate(this.personalFormGroupControls.dateOfBirth.value);
+    const updateAlumni = new UpdateAlumni(
+      this.personalFormGroupControls.fullName.value,
+      dateOfBirth,
+      this.updateAlumni.image_1920.toString().replace('data:image/png;base64,', ''),
+      this.personalFormGroupControls.country.value,
+      this.personalFormGroupControls.city.value,
+      this.personalFormGroupControls.mobile.value,
+      this.personalFormGroupControls.skype.value,
+      this.personalFormGroupControls.telegram.value,
+      this.personalFormGroupControls.viber.value,
+      this.personalFormGroupControls.facebook.value,
+      this.personalFormGroupControls.linkedIn.value,
+      this.educationFormGroupControls.diplomaNaukma.value,
+      this.educationFormGroupControls.bachelor.value,
+      this.educationFormGroupControls.bachelorFaculty.value,
+      this.educationFormGroupControls.bachelorSpeciality.value,
+      this.educationFormGroupControls.bachelorEntryYear.value,
+      this.educationFormGroupControls.bachelorFinishYear.value,
+      this.educationFormGroupControls.master.value,
+      this.educationFormGroupControls.masterFaculty.value,
+      this.educationFormGroupControls.masterSpeciality.value,
+      this.educationFormGroupControls.masterEntryYear.value,
+      this.educationFormGroupControls.masterFinishYear.value,
+      this.jobFormGroupControls.jobId.value,
+      this.jobFormGroupControls.jobName.value,
+      this.jobFormGroupControls.position.value,
+      this.updateAlumni.alumni_id
+    );
+
+    if (this.formGroup.valid) {
+      if (updateAlumni.image_1920 === 'false') {
+        delete updateAlumni.image_1920;
+      }
+      for (const key in updateAlumni) {
+        if (updateAlumni.hasOwnProperty(key)) {
+          if (updateAlumni[key] === 'false') {
+            updateAlumni[key] = null;
+          }
+        }
+      }
+      this.adminService
+        .saveUpdateForm({
+          ...updateAlumni,
+          operator_id: this.user.operator_id,
+          form_id: this.formId
+        })
+        .pipe(untilDestroyed(this))
+        .subscribe((res) => {
+          console.log(res);
+        });
+    } else {
+      this.formGroup.markAllAsTouched();
+      this.formGroup.markAsDirty();
+    }
+  }
+
   formatDate(date: Date) {
     return date.getFullYear() + '-' + (+date.getMonth() + 1) + '-' + date.getDate();
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

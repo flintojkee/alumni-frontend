@@ -59,6 +59,7 @@ export class ProfileStepperComponent implements OnInit {
         this.personalFormGroupControls.viber.value,
         this.personalFormGroupControls.facebook.value,
         this.personalFormGroupControls.linkedIn.value,
+        this.educationFormGroupControls.diplomaNaukma.value,
         this.educationFormGroupControls.bachelor.value,
         this.educationFormGroupControls.bachelorFaculty.value,
         this.educationFormGroupControls.bachelorSpeciality.value,

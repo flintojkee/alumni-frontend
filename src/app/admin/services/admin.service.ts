@@ -70,6 +70,13 @@ export class AdminService extends RestService {
     );
   }
 
+  saveUpdateForm(form: UpdateFormConfirmRequest) {
+    return this.put<UpdateFormConfirmRequest, UpdateFormConfirmRequest>(
+      this.adminUrl.saveForm.replace('{id}', `${form.form_id}`),
+      form
+    );
+  }
+
   getQuery(obj: any) {
     return Object.keys(obj).reduce(
       (acc, cur) => (obj[cur] ? `${acc}&${cur}=${obj[cur]}` : acc),

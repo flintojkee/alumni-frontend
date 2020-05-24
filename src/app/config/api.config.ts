@@ -13,6 +13,8 @@ export enum AdminUrls {
   alumniInviteStatus = 'alumni_invite_status/',
   login = 'operator_login/',
   updateForm = 'update_form/',
+  saveForm = 'update_form/{id}',
+  updateFormStatus = 'update_form/{id}/status',
   confirmForm = 'update_form/{id}/confirm'
 }
 

@@ -15,11 +15,10 @@
     margin-right: 20px;
     width: 40%;
   }
-  &__side-info {
-    p {
-      color: rgba(0, 0, 0, 0.54);
-      font-size: 14px;
-    }
+  p {
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 14px;
+    margin-bottom: 10px;
   }
 }
 .mat-card-avatar {
