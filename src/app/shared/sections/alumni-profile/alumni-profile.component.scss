@@ -6,7 +6,7 @@
     border-radius: 50%;
     object-fit: cover;
     &--background {
-      max-height: 150px;
+      max-height: 350px;
       display: flex;
       justify-content: center;
     }
@@ -23,12 +23,21 @@
   }
 }
 .mat-card-avatar {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
 }
 .mat-card-header-text {
   width: 40% !important;
 }
+
 :host {
   width: 100%;
+}
+
+::ng-deep {
+  .mat-card-header-text {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
 }

@@ -9,7 +9,13 @@ import { Alumni } from '../../models';
 })
 export class AlumniProfileComponent implements OnInit {
   @Input() alumni: Alumni;
+
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.alumni);
+    if (!this.alumni.image_1920.includes('data:image')) {
+      this.alumni.image_1920 = 'data:image/png;base64,' + this.alumni.image_1920;
+    }
+  }
 }

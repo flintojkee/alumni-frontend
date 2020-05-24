@@ -1,2 +1,4 @@
-<alm-profile-stepper *ngIf="user" [user]="user" (updatedUser)="sendUserForm($event)">
-</alm-profile-stepper>
+<alm-alumni-profile [alumni]="user"></alm-alumni-profile>
+<a [routerLink]="['/profile/edit']">
+  <button mat-button>Редагувати</button>
+</a>

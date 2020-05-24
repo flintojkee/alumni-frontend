@@ -5,8 +5,11 @@ import { AlumniService } from '../../services/alumni.service';
 import { AlumniFilterForm } from '@alm/app/shared/models/forms/alumni-filter.form';
 import { AuthService } from '@alm/app/auth/services';
 import { untilDestroyed } from 'ngx-take-until-destroy';
+import { catchError } from 'rxjs/operators';
+import { EMPTY } from 'rxjs';
 
-export class AlumniGroupmatesDataSource extends BaseDataSource<Alumni | undefined> {
+export class AlumniGroupmatesDataSource extends BaseDataSource<Alumni | undefined>
+  implements OnDestroy {
   constructor(private alumniService: AlumniService, private id: number) {
     super();
     this.uploadMore(this.lastPage);
@@ -19,6 +22,14 @@ export class AlumniGroupmatesDataSource extends BaseDataSource<Alumni | undefine
         offset: offset * this.limit,
         limit: this.limit
       })
+      .pipe(
+        catchError((err) => {
+          console.log(err);
+          alert(err.error.message);
+          return EMPTY;
+        }),
+        untilDestroyed(this)
+      )
       .subscribe((res) => {
         this.isEmpty = this.lastPage === 0 && res.length === 0;
         this.isLoading = false;
@@ -26,6 +37,7 @@ export class AlumniGroupmatesDataSource extends BaseDataSource<Alumni | undefine
         this.dataStream.next(this.cachedAlumni);
       });
   }
+  ngOnDestroy() {}
 }
 
 @Component({
@@ -40,11 +52,18 @@ export class GroupmatesListComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService, private alumniService: AlumniService) {}
 
   ngOnInit() {
-    this.authService.user$.pipe(untilDestroyed(this)).subscribe((r) => {
-      console.log('test');
-      this.user = r as Alumni;
-      this.dataSource = new AlumniGroupmatesDataSource(this.alumniService, this.user.id);
-    });
+    this.authService.user$
+      .pipe(
+        catchError((err) => {
+          console.log(err);
+          return EMPTY;
+        }),
+        untilDestroyed(this)
+      )
+      .subscribe((r) => {
+        this.user = r as Alumni;
+        this.dataSource = new AlumniGroupmatesDataSource(this.alumniService, this.user.id);
+      });
   }
 
   ngOnDestroy() {}
