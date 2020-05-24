@@ -14,6 +14,7 @@ import { ProfileStepperComponent } from './sections/profile-stepper/profile-step
 import { EducationFormComponent } from './sections/education-form/education-form.component';
 import { PersonalDataFormComponent } from './sections/personal-data-form/personal-data-form.component';
 import { JobFormComponent } from './sections/job-form/job-form.component';
+import { AlumniProfileComponent } from './sections/alumni-profile/alumni-profile.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { JobFormComponent } from './sections/job-form/job-form.component';
     ProfileStepperComponent,
     EducationFormComponent,
     PersonalDataFormComponent,
-    JobFormComponent
+    JobFormComponent,
+    AlumniProfileComponent
   ],
   imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule, RouterModule, DirectivesModule],
   exports: [
@@ -43,7 +45,8 @@ import { JobFormComponent } from './sections/job-form/job-form.component';
     ProfileStepperComponent,
     EducationFormComponent,
     PersonalDataFormComponent,
-    JobFormComponent
+    JobFormComponent,
+    AlumniProfileComponent
   ]
 })
 export class SharedModule {}

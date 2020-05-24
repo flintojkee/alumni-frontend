@@ -82,49 +82,52 @@ export class AlumniUpdateRequestComponent implements OnInit, OnDestroy {
   }
 
   confirmForm() {
-    console.log(this.formGroup);
-    const dateOfBirth = this.formatDate(this.personalFormGroupControls.dateOfBirth.value);
-    const updateAlumni = new UpdateAlumni(
-      this.personalFormGroupControls.fullName.value,
-      dateOfBirth,
-      this.updateAlumni.image_1920.toString().replace('data:image/jpeg;base64,', ''),
-      this.personalFormGroupControls.country.value,
-      this.personalFormGroupControls.city.value,
-      this.personalFormGroupControls.mobile.value,
-      this.personalFormGroupControls.skype.value,
-      this.personalFormGroupControls.telegram.value,
-      this.personalFormGroupControls.viber.value,
-      this.personalFormGroupControls.facebook.value,
-      this.personalFormGroupControls.linkedIn.value,
-      this.educationFormGroupControls.bachelor.value,
-      this.educationFormGroupControls.bachelorFaculty.value,
-      this.educationFormGroupControls.bachelorSpeciality.value,
-      this.educationFormGroupControls.bachelorEntryYear.value,
-      this.educationFormGroupControls.bachelorFinishYear.value,
-      this.educationFormGroupControls.master.value,
-      this.educationFormGroupControls.masterFaculty.value,
-      this.educationFormGroupControls.masterSpeciality.value,
-      this.educationFormGroupControls.masterEntryYear.value,
-      this.educationFormGroupControls.masterFinishYear.value,
-      this.jobFormGroupControls.jobId.value,
-      this.jobFormGroupControls.jobName.value,
-      this.jobFormGroupControls.position.value,
-      this.updateAlumni.alumni_id
-    );
+    // console.log(this.formGroup);
+    // const dateOfBirth = this.formatDate(this.personalFormGroupControls.dateOfBirth.value);
+    // const updateAlumni = new UpdateAlumni(
+    //   this.personalFormGroupControls.fullName.value,
+    //   dateOfBirth,
+    //   this.updateAlumni.image_1920.toString().replace('data:image/jpeg;base64,', ''),
+    //   this.personalFormGroupControls.country.value,
+    //   this.personalFormGroupControls.city.value,
+    //   this.personalFormGroupControls.mobile.value,
+    //   this.personalFormGroupControls.skype.value,
+    //   this.personalFormGroupControls.telegram.value,
+    //   this.personalFormGroupControls.viber.value,
+    //   this.personalFormGroupControls.facebook.value,
+    //   this.personalFormGroupControls.linkedIn.value,
+    //   this.educationFormGroupControls.bachelor.value,
+    //   this.educationFormGroupControls.bachelorFaculty.value,
+    //   this.educationFormGroupControls.bachelorSpeciality.value,
+    //   this.educationFormGroupControls.bachelorEntryYear.value,
+    //   this.educationFormGroupControls.bachelorFinishYear.value,
+    //   this.educationFormGroupControls.master.value,
+    //   this.educationFormGroupControls.masterFaculty.value,
+    //   this.educationFormGroupControls.masterSpeciality.value,
+    //   this.educationFormGroupControls.masterEntryYear.value,
+    //   this.educationFormGroupControls.masterFinishYear.value,
+    //   this.jobFormGroupControls.jobId.value,
+    //   this.jobFormGroupControls.jobName.value,
+    //   this.jobFormGroupControls.position.value,
+    //   this.updateAlumni.alumni_id
+    // );
 
     if (this.formGroup.valid) {
-      for (const key in updateAlumni) {
-        if (updateAlumni.hasOwnProperty(key)) {
-          if (updateAlumni[key] === null) {
-            updateAlumni[key] = false;
-          }
-        }
-      }
-      if (updateAlumni.image_1920 === 'false') {
-        delete updateAlumni.image_1920;
-      }
+      // for (const key in updateAlumni) {
+      //   if (updateAlumni.hasOwnProperty(key)) {
+      //     if (updateAlumni[key] === null) {
+      //       updateAlumni[key] = false;
+      //     }
+      //   }
+      // }
+      // if (updateAlumni.image_1920 === 'false') {
+      //   delete updateAlumni.image_1920;
+      // }
       this.adminService
-        .confirmUpdateForm({ ...updateAlumni, operator_id: this.user.operator_id })
+        .confirmUpdateForm({
+          form_id: this.updateAlumni.form_id,
+          operator_id: this.user.operator_id
+        })
         .pipe(untilDestroyed(this))
         .subscribe((res) => {
           console.log(res);

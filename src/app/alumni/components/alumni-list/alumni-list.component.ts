@@ -1,8 +1,33 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { Alumni } from '@alm/app/shared';
 import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 import { DataSource, CollectionViewer } from '@angular/cdk/collections';
 import { AlumniService } from '../../services/alumni.service';
+import { BaseDataSource } from '@alm/app/shared/utils';
+import { AdminService } from '@alm/app/admin/services/admin.service';
+import { AlumniFilterForm } from '@alm/app/shared/models/forms/alumni-filter.form';
+import { untilDestroyed } from 'ngx-take-until-destroy';
+export class AlumniListDataSource extends BaseDataSource<Alumni | undefined> {
+  constructor(private alumniService: AlumniService, private filter: AlumniFilterForm) {
+    super();
+    this.uploadMore(this.lastPage);
+  }
+  uploadMore(offset: number) {
+    this.isLoading = true;
+    this.alumniService
+      .getAlumni({
+        offset: offset * this.limit,
+        limit: this.limit,
+        filter: this.filter
+      })
+      .subscribe((res) => {
+        this.isEmpty = this.lastPage === 0 && res.length === 0;
+        this.isLoading = false;
+        this.cachedAlumni = this.cachedAlumni.concat(res);
+        this.dataStream.next(this.cachedAlumni);
+      });
+  }
+}
 
 @Component({
   selector: 'alm-alumni-list',
@@ -10,59 +35,26 @@ import { AlumniService } from '../../services/alumni.service';
   styleUrls: ['./alumni-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AlumniListComponent implements OnInit {
-  dataSource: AlumniDataSource;
-  constructor(alumniService: AlumniService) {
-    // tslint:disable-next-line: no-use-before-declare
-    this.dataSource = new AlumniDataSource(alumniService);
-  }
-  ngOnInit() {}
-}
+export class AlumniListComponent implements OnInit, OnDestroy {
+  dataSource: AlumniListDataSource;
+  filter$ = new BehaviorSubject<AlumniFilterForm>(new AlumniFilterForm());
 
-export class AlumniDataSource extends DataSource<Alumni | undefined> {
-  private cachedAlumni = Array.from<Alumni>({ length: 0 });
-  private dataStream = new BehaviorSubject<(Alumni | undefined)[]>(this.cachedAlumni);
-  private subscription = new Subscription();
-  public isLoading = false;
-  private lastPage = 0;
-  private limit = 10;
-  dataSource: Alumni;
   constructor(private alumniService: AlumniService) {
-    super();
-    this.uploadMore(this.lastPage);
+    // tslint:disable-next-line: no-use-before-declare
+    // this.dataSource = new AlumniListDataSource(this.alumniService, this.filter$.value);
   }
-
-  connect(
-    collectionViewer: CollectionViewer
-  ): Observable<(Alumni | undefined)[] | ReadonlyArray<Alumni | undefined>> {
-    this.subscription.add(
-      collectionViewer.viewChange.subscribe((range) => {
-        const currentPage = this._getPageForIndex(range.end);
-
-        if (currentPage > this.lastPage) {
-          this.lastPage = currentPage;
-          this.uploadMore(this.lastPage);
-        }
-      })
-    );
-    return this.dataStream;
-  }
-
-  disconnect(collectionViewer: CollectionViewer): void {
-    this.subscription.unsubscribe();
-  }
-  uploadMore(offset: number) {
-    this.isLoading = true;
-    this.alumniService
-      .getAlumni({ offset: offset * this.limit, limit: this.limit})
+  ngOnInit() {
+    this.filter$
+      .asObservable()
+      .pipe(untilDestroyed(this))
       .subscribe((res) => {
-        this.isLoading = false;
-        this.cachedAlumni = this.cachedAlumni.concat(res);
-        this.dataStream.next(this.cachedAlumni);
-        this.alumniService.setAlumni(res);
+        this.dataSource = new AlumniListDataSource(this.alumniService, this.filter$.value);
+        
       });
   }
-  private _getPageForIndex(i: number): number {
-    return Math.floor(i / this.limit);
+  ngOnDestroy() {}
+  filterChange(form: AlumniFilterForm) {
+    console.log(form);
+    this.filter$.next(form);
   }
 }

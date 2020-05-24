@@ -45,14 +45,12 @@ export class ProfileStepperComponent implements OnInit {
   }
 
   sendData() {
-    const dateOfBirth = this.formatDate(
-      this.personalFormGroupControls.dateOfBirth.value
-    );
+    const dateOfBirth = this.formatDate(this.personalFormGroupControls.dateOfBirth.value);
     this.updatedUser.next(
       new UpdateAlumni(
         this.personalFormGroupControls.fullName.value,
         dateOfBirth,
-        this.user.image_1920.toString().replace('data:image/jpeg;base64,', ''),
+        this.user.image_1920.toString().replace('data:image/png;base64,', ''),
         this.personalFormGroupControls.country.value,
         this.personalFormGroupControls.city.value,
         this.personalFormGroupControls.mobile.value,

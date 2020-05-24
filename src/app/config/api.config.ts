@@ -1,5 +1,6 @@
 export enum AlumniUrls {
   alumni = 'alumni/',
+  alumniGroupmates = 'alumni/{id}/groupmates',
   alumniUnregistered = 'alumni/unregistered',
   alumniRegistered = 'alumni/registered',
   register = 'register/',
@@ -12,7 +13,7 @@ export enum AdminUrls {
   alumniInviteStatus = 'alumni_invite_status/',
   login = 'operator_login/',
   updateForm = 'update_form/',
-  confirmForm = 'update_form/confirm'
+  confirmForm = 'update_form/{id}/confirm'
 }
 
 export enum ProfileUrls {

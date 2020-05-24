@@ -28,7 +28,7 @@ export class ConfirmComponent implements OnInit, OnDestroy {
       .subscribe((res) => {
         this.authService.logout();
         this.authService.setUser(res.alumni);
-        this.router.navigate(['profile']);
+        this.router.navigate(['profile', 'edit']);
         console.log(res);
       });
   }

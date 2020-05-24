@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Alumni } from '@alm/app/shared';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AlumniFilterForm } from '@alm/app/shared/models/forms/alumni-filter.form';
 
 @Injectable({
   providedIn: 'root'
@@ -29,33 +30,35 @@ export class AlumniService extends RestService {
   getAlumni({
     offset,
     limit,
-    tag,
-    is_activated
+    filter
   }: {
     offset?: number;
     limit?: number;
-    tag?: 'Випускник';
-    is_activated?: 'False' | 'True';
-  }): Observable<Alumni[]> {
-    let url = `${this.alumniUrl.alumniRegistered}?`;
-    if (offset || offset === 0) {
-      url += 'offset=' + offset;
-    }
-    if (limit) {
-      url += '&limit=' + limit;
-    }
-    if (tag) {
-      url += '&tag=' + tag;
-    }
-    if (is_activated) {
-      url += '&is_activated=' + is_activated;
-    }
-    return this.get<Alumni[]>(`${url}`);
+    filter?: AlumniFilterForm;
+  }) {
+    return this.get<Alumni[]>(
+      this.alumniUrl.alumniRegistered + '?' + this.getQuery({ ...filter, offset, limit })
+    );
+  }
+
+  getGroupmates({ id, offset, limit }: { id: number; offset?: number; limit?: number }) {
+    return this.get<Alumni[]>(
+      this.alumniUrl.alumniGroupmates.replace('{id}', `${id}`) +
+        '?' +
+        this.getQuery({ offset, limit })
+    );
   }
 
   getAlumniById(id: number) {
     return this.get<{ alumni: Alumni[] }>(this.alumniUrl.alumni + id).pipe(
       map((res) => res.alumni[0])
+    );
+  }
+
+  getQuery(obj: any) {
+    return Object.keys(obj).reduce(
+      (acc, cur) => (obj[cur] ? `${acc}&${cur}=${obj[cur]}` : acc),
+      ''
     );
   }
 }

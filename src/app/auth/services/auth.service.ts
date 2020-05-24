@@ -38,6 +38,7 @@ export class AuthService extends RestService {
 
   setUser(user: Alumni | Operator) {
     this._user.next(user);
+    this.setAuth(true);
     localStorage.setItem('user', JSON.stringify(user));
   }
 

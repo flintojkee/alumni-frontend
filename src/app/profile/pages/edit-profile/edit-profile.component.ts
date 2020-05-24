@@ -1,18 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AuthService } from '@alm/app/auth/services';
 import { Alumni, Company } from '@alm/app/shared';
-import { UpdateAlumni } from '@alm/app/shared/models/update-alumni.model';
+import { AuthService } from '@alm/app/auth/services';
 import { ProfileService } from '../../services/profile.service';
-import { CompanyService } from '@alm/app/core/services/company.service';
-import { untilDestroyed } from 'ngx-take-until-destroy';
 import { Router } from '@angular/router';
+import { UpdateAlumni } from '@alm/app/shared/models/update-alumni.model';
+import { untilDestroyed } from 'ngx-take-until-destroy';
 
 @Component({
-  selector: 'alm-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  templateUrl: './edit-profile.component.html',
+  styleUrls: ['./edit-profile.component.scss']
 })
-export class ProfileComponent implements OnInit, OnDestroy {
+export class EditProfileComponent implements OnInit, OnDestroy {
   user: Alumni;
   companies: Company[];
   constructor(
@@ -22,7 +20,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.authService.user$.pipe(untilDestroyed(this)).subscribe((res) => {
+    this.authService.user$.subscribe((res) => {
       this.user = res as Alumni;
       console.log(res);
     });
@@ -38,7 +36,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       .subscribe((res) => {
         this.companies = res;
         this.authService.setUser(res);
-        this.router.navigate(['']);
+        this.router.navigateByUrl('/profile');
       });
   }
 }

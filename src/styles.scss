@@ -35,7 +35,6 @@ body {
 .fw {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
   align-items: center;
 }
 
@@ -81,6 +80,11 @@ body {
   width: 100%;
 }
 
+.col-12-xs {
+  @media screen and (max-width: 576px) {
+    width: 100%;
+  }
+}
 
 .form {
   display: flex;

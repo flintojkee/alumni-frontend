@@ -1,6 +1,39 @@
-<mat-toolbar>
-  <span>Login</span>
-</mat-toolbar>
-<mat-card>
-  <alm-form-login [formGroup]="loginForm" (submittedForm)="login($event)"> </alm-form-login>
-</mat-card>
+<div class="login">
+  <div class="container">
+    <h1 class="login__header">
+      Спільнота випускників <br />
+      Факультету інформатики НаУКМА!
+    </h1>
+    <div class="login__content fw">
+      <div class="login__form col-6 col-12-xs">
+        <alm-form-login [formGroup]="loginForm" (submittedForm)="login($event)"> </alm-form-login>
+      </div>
+      <div class="login__info col-6 col-12-xs">
+        <div class="login__info-block">
+          <h2>Як зареєструватись</h2>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+            has been the industry's standard dummy text ever since the 1500s, when an unknown
+            printer took a galley of type and scrambled it to make a type specimen book.
+          </p>
+        </div>
+        <div class="login__info-block">
+          <h2>Як зареєструватись</h2>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+            has been the industry's standard dummy text ever since the 1500s, when an unknown
+            printer took a galley of type and scrambled it to make a type specimen book.
+          </p>
+        </div>
+        <div class="login__info-block">
+          <h2>Як зареєструватись</h2>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+            has been the industry's standard dummy text ever since the 1500s, when an unknown
+            printer took a galley of type and scrambled it to make a type specimen book.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

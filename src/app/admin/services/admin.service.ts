@@ -63,8 +63,11 @@ export class AdminService extends RestService {
     return this.get<UpdateAlumni[]>(this.adminUrl.updateForm + '?' + this.getQuery({ ...filter }));
   }
 
-  confirmUpdateForm(form: any) {
-    return this.post<UpdateFormConfirmRequest, UpdateFormConfirmRequest>(this.adminUrl.confirmForm, form);
+  confirmUpdateForm({ form_id, operator_id }: { form_id: number; operator_id: number }) {
+    return this.post<{ operator_id: number }, { operator_id: number }>(
+      this.adminUrl.confirmForm.replace('{id}', `${form_id}`),
+      { operator_id }
+    );
   }
 
   getQuery(obj: any) {

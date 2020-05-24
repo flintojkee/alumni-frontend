@@ -9,21 +9,35 @@
       <ng-container *ngIf="!(isOperator$ | async); else operator">
         <a
           class="sidenav__link"
+          [routerLink]="['/alumni']"
+          routerLinkActive="sidenav__link--active"
+        >
+          <button mat-button>Всі випускники</button></a
+        >
+        <a
+          class="sidenav__link"
+          [routerLink]="['alumni', 'groupmates']"
+          routerLinkActive="sidenav__link--active"
+        >
+          <button mat-button>Мої одногрупники</button></a
+        >
+        <a
+          class="sidenav__link"
           [routerLink]="['/profile']"
           routerLinkActive="sidenav__link--active"
-          >Profile</a
         >
-        <a class="sidenav__link" [routerLink]="['/alumni']" routerLinkActive="sidenav__link--active"
-          >Alumni</a
+          <button mat-button>Мій профіль</button></a
         >
+        <div *ngIf="user$ | async as alumni">
+          {{ alumni.name }}
+          <button mat-button (click)="logout()">Вийти</button>
+        </div>
       </ng-container>
       <ng-template #operator>
-        <div *ngIf="user$ | async as operator"
-          >
+        <div *ngIf="user$ | async as operator">
           {{ operator.username }} <small>({{ operator.is_admin ? 'Адмін' : 'Оператор' }})</small>
           <button mat-button (click)="logout()">Вийти</button>
-          </div
-        >
+        </div>
       </ng-template>
     </div>
   </div>

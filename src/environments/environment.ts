@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'https://alumni-service-api.herokuapp.com/api/v1/',
+  //apiUrl: 'http://192.168.0.102:8080/api/v1/',
   hostUrl: 'http://localhost:4200/'
 };
 

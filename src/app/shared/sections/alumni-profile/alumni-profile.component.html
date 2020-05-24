@@ -1,0 +1,28 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar>
+      <img
+        class="alumni-profile__image"
+        [src]="
+          alumni.image_1920
+            ? 'data:image/png;base64,' + alumni.image_1920
+            : '/assets/icons/userpic.svg'
+        "
+        alt="alumni profile image"
+      />
+    </div>
+    <mat-card-title>
+      {{ alumni.name }}
+    </mat-card-title>
+    <mat-card-subtitle>
+      <p>{{ alumni.function }}</p>
+      <p>{{alumni.parent_id[1]}}</p>
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div row>
+      <b>Дата народження {{ alumni.birth_date }}</b>
+    </div>
+  </mat-card-content>
+</mat-card>
