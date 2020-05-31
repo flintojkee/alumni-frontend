@@ -9,7 +9,7 @@ import { AlumniUnregisteredCardComponent } from './components/alumni-unregistere
 import { InviteStatusColorPipe } from './pipes/invite-status-color.pipe';
 import { AlumniUpdateRequestsComponent } from './pages/alumni-update-requests/alumni-update-requests.component';
 import { AlumniUpdateRequestComponent } from './pages/alumni-update-request/alumni-update-request.component';
-
+import { ClipboardModule } from 'ngx-clipboard';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -20,6 +20,6 @@ import { AlumniUpdateRequestComponent } from './pages/alumni-update-request/alum
     AlumniUpdateRequestsComponent,
     AlumniUpdateRequestComponent
   ],
-  imports: [CommonModule, AdminRoutingModule, SharedModule]
+  imports: [CommonModule, AdminRoutingModule, SharedModule, ClipboardModule]
 })
 export class AdminModule {}

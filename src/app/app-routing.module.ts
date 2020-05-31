@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SignUpComponent, ConfirmComponent, LoginComponent, LoginAdminComponent } from './auth/pages';
+import {
+  SignUpComponent,
+  ConfirmComponent,
+  LoginComponent,
+  LoginAdminComponent
+} from './auth/pages';
 
 const routes: Routes = [
   { path: 'sign-up/:token', component: SignUpComponent },
@@ -16,7 +21,8 @@ const routes: Routes = [
     loadChildren: () => import('./alumni/alumni.module').then((m) => m.AlumniModule)
   },
 
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule) }
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule) },
+  { path: '', pathMatch: 'full', redirectTo: 'login' }
 ];
 
 @NgModule({

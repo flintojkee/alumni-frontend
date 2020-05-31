@@ -12,8 +12,7 @@
     class="alumni-unregistired-card__header"
   >
     <mat-panel-title>
-      <alm-alumni-card [alumni]="alm">
-      </alm-alumni-card>
+      <alm-alumni-card [alumni]="alm"> </alm-alumni-card>
     </mat-panel-title>
   </mat-expansion-panel-header>
   <div class="alumni-unregistired-card__actions">
@@ -28,7 +27,25 @@
         <mat-icon>link</mat-icon>
       </button>
       <div *ngIf="link" class="alumni-unregistired-card__invite-link">
-        <a [href]="hostUrl + 'sign-up/' + link">{{ hostUrl + 'sign-up/' + link }}</a>
+        <div class="alumni-unregistired-card__invite-link-buttons">
+          <a [href]="hostUrl + 'sign-up/' + link" target="_blank" rel="noopener noreferrer">
+            <button mat-flat-button color="primary">
+              Перейти за посиланням
+            </button></a
+          >
+          <button
+            mat-flat-button
+            color="primary"
+            ngxClipboard
+            [cbContent]="hostUrl + 'sign-up/' + link"
+          >
+            Копіювати посилання
+          </button>
+        </div>
+
+        <a [href]="hostUrl + 'sign-up/' + link" target="_blank" rel="noopener noreferrer">{{
+          hostUrl + 'sign-up/' + link
+        }}</a>
       </div>
     </div>
     <div class="alumni-unregistired-card__actions-buttons">
