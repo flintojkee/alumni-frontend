@@ -14,8 +14,14 @@
   &__main-info {
     margin-right: 20px;
     width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
   }
   &__side-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     p {
       color: rgba(0, 0, 0, 0.54);
       font-size: 14px;

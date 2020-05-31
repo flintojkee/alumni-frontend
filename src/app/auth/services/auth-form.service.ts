@@ -22,7 +22,8 @@ export class AuthFormService {
         minLengthValidator('Minimum length of password is', 7),
         passwordValidator()
       ],
-      retypedPassword: []
+      retypedPassword: [],
+      allowShowContacts: []
     };
 
     const controls = this.formService.createFormControls(initialValues, validators);

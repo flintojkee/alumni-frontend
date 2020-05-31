@@ -2,11 +2,11 @@
   <div row>
     <div [col]="8">
       <div row>
-        <mat-form-field [col]="8">
+        <mat-form-field [col]="8" appearance="outline">
           <mat-label>Прізвище Ім'я По-батькові</mat-label>
           <input matInput placeholder="" formControlName="fullName" required />
         </mat-form-field>
-        <mat-form-field [col]="4">
+        <mat-form-field [col]="4" appearance="outline">
           <mat-label>Дата народження</mat-label>
           <input
             [matDatepickerFilter]="filterBirthDate"
@@ -20,7 +20,7 @@
         </mat-form-field>
       </div>
       <div row>
-        <mat-form-field [col]="6">
+        <mat-form-field [col]="6" appearance="outline">
           <mat-label>Країна проживання</mat-label>
           <input type="text" matInput [formControl]="country" [matAutocomplete]="countryAuto" />
           <mat-autocomplete #countryAuto="matAutocomplete">
@@ -29,13 +29,13 @@
             }}</mat-option>
           </mat-autocomplete>
         </mat-form-field>
-        <mat-form-field [col]="6">
+        <mat-form-field [col]="6" appearance="outline">
           <mat-label>Місто проживання</mat-label>
           <input matInput placeholder="" formControlName="city" required />
         </mat-form-field>
       </div>
       <div row>
-        <mat-form-field [col]="6">
+        <mat-form-field [col]="6" appearance="outline">
           <mat-label>Мобільний телефон</mat-label>
           <span matPrefix>+&nbsp;</span>
           <input
@@ -48,31 +48,32 @@
             type="tel"
             (keyup)="formatPhone()"
           />
-          <mat-hint>+380503332211</mat-hint>
+          <mat-hint *ngIf="editable">+380503332211</mat-hint>
         </mat-form-field>
-        <mat-form-field [col]="6">
+        <mat-form-field [col]="6" appearance="outline">
           <mat-label>Skype</mat-label>
           <input matInput placeholder="" formControlName="skype" />
         </mat-form-field>
       </div>
       <div row>
-        <mat-form-field [col]="6">
+        <mat-form-field [col]="6" appearance="outline">
           <mat-label>Telegram</mat-label>
           <input matInput placeholder="" formControlName="telegram" />
         </mat-form-field>
-        <mat-form-field [col]="6">
+        <mat-form-field [col]="6" appearance="outline">
           <mat-label>Viber</mat-label>
           <input matInput placeholder="" formControlName="viber" />
         </mat-form-field>
       </div>
     </div>
-    <div [col]="4">
+    <div [col]="4" appearance="outline">
       <div class="form__image-wrapper">
         <img
           class="form__image"
           [src]="user.image_1920 ? user.image_1920 : '/assets/icons/userpic.svg'"
         />
         <input
+          *ngIf="editable"
           (change)="changeAvatar($event.target.files)"
           accept="image/*"
           formControlName="avatar"
@@ -83,13 +84,13 @@
     </div>
   </div>
   <div row>
-    <mat-form-field [col]="10">
+    <mat-form-field [col]="10" appearance="outline">
       <mat-label>Facebook</mat-label>
       <input matInput placeholder="" formControlName="facebook" />
     </mat-form-field>
   </div>
   <div row>
-    <mat-form-field [col]="10">
+    <mat-form-field [col]="10" appearance="outline">
       <mat-label>LinkedIn</mat-label>
       <input matInput placeholder="" formControlName="linkedIn" />
     </mat-form-field>

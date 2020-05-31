@@ -25,6 +25,7 @@ export class FormSignUpComponent extends BaseFormComponent<SignUpForm>
   email: AbstractControl;
   password: AbstractControl;
   retypedPassword: AbstractControl;
+  allowShowContacts: AbstractControl;
   constructor() {
     super();
   }

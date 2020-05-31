@@ -83,7 +83,18 @@ export class AlumniUpdateRequestComponent implements OnInit, OnDestroy {
   get jobFormGroupControls() {
     return this.formGroup.controls.job['controls'];
   }
-
+  rejectForm() {
+    this.adminService
+      .rejectUpdateForm({
+        form_id: this.updateAlumni.form_id,
+        operator_id: this.user.operator_id
+      })
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
+        console.log(res);
+        this.router.navigate(['admin', 'alumni-update-requests']);
+      });
+  }
   confirmForm() {
     if (this.formGroup.valid) {
       this.adminService

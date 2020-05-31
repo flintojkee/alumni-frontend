@@ -16,6 +16,7 @@
           [matBadgeColor]="alumni.user_confirmed ? 'primary' : 'warn'"
         >
           <alm-alumni-card *ngIf="alumni" [alumni]="alumni"> </alm-alumni-card>
+          <button (click)="deleteAlumni(alumni.alumni_id)" *ngIf="!alumni.user_confirmed" mat-button color="warn">Видалити</button>
         </div>
         <div class="spinner">
           <mat-spinner diameter="50" *ngIf="dataSource.isLoading"></mat-spinner>

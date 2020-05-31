@@ -1,7 +1,7 @@
 <form [formGroup]="formGroup" class="form" *ngIf="companies">
   <div>
     <mat-label>Компанія</mat-label>
-    <mat-form-field [col]="12">
+    <mat-form-field [col]="12" appearance="outline">
       <input
         type="text"
         placeholder="Pick one"
@@ -16,10 +16,10 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-    <span style="margin-bottom: 10px; color: #f44336" *ngIf="isCompanyError"
+    <span style="margin-bottom: 10px; color: #f44336" *ngIf="isCompanyError && isAdmin"
       >Невідома компанія, додайте, будь ласка, компанцію в Odoo</span
     >
-    <mat-form-field [col]="12">
+    <mat-form-field [col]="12" appearance="outline">
       <mat-label>Посада</mat-label>
       <input matInput placeholder="" formControlName="position" />
     </mat-form-field>

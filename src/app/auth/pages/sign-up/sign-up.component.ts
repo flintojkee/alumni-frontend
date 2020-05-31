@@ -33,8 +33,13 @@ export class SignUpComponent implements OnInit, OnDestroy {
   ngOnDestroy() {}
 
   signUp(signUpForm: SignUpForm) {
+    const signUp = {
+      email: signUpForm.email,
+      password: signUpForm.password,
+      allow_show_contacts: signUpForm.allowShowContacts
+    };
     this.authService
-      .signUp({odoo_contact_token: this.token + '====', ...signUpForm })
+      .signUp({ odoo_contact_token: this.token + '====', ...signUp })
       .pipe(untilDestroyed(this))
       .subscribe((res) => {
         console.log(res);

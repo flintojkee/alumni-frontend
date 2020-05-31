@@ -1,4 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  Output,
+  EventEmitter,
+  Input
+} from '@angular/core';
 import { AlumniFilterForm } from '../../models/forms/alumni-filter.form';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormFilterService } from '@alm/app/core/services/form-filter.service';
@@ -21,7 +28,6 @@ export class FilterAlumniComponent implements OnInit {
     this.filterFormGroup = this.formFilterService.createAlumniFilterForm();
   }
   formChanges(form: AlumniFilterForm) {
-    console.log(form);
     this.formChanged.next(form);
   }
 }

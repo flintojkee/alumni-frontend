@@ -1,4 +1,12 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges
+} from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { SpecialityList, FacultyList } from '../../utils/filter-helper';
 import { Alumni } from '../../models';
@@ -8,9 +16,10 @@ import { Alumni } from '../../models';
   templateUrl: './education-form.component.html',
   styleUrls: ['./education-form.component.scss']
 })
-export class EducationFormComponent implements OnInit {
+export class EducationFormComponent implements OnInit, OnChanges {
   @Input() user: Alumni;
   @Output() inittedFormGroup = new EventEmitter<FormGroup>();
+  @Input() editable: boolean;
   formGroup: FormGroup;
   specialityList = SpecialityList;
   facultyList = FacultyList;
@@ -23,6 +32,11 @@ export class EducationFormComponent implements OnInit {
     this.bachelorMasterChange();
     this.formGroup.controls.bachelor.setValue(this.user.bachelor_degree || null);
     this.formGroup.controls.master.setValue(this.user.master_degree || null);
+    this.toggleFormGroup();
+  }
+
+  ngOnChanges() {
+    this.toggleFormGroup();
   }
 
   initFormGroup() {
@@ -75,7 +89,6 @@ export class EducationFormComponent implements OnInit {
     return this.formGroup.controls.masterFinishYear;
   }
 
-
   getYears(start?: number, end?: number) {
     const y = [];
     for (let index = start; index < end; index++) {
@@ -124,5 +137,11 @@ export class EducationFormComponent implements OnInit {
         this.formGroup.updateValueAndValidity();
       }
     });
+  }
+
+  toggleFormGroup() {
+    if (this.formGroup) {
+      this.editable ? this.formGroup.enable() : this.formGroup.disable();
+    }
   }
 }

@@ -24,4 +24,7 @@ export abstract class RestService {
   protected put<T = {}, R = {}>(relativeUrl: string, data: T): Observable<R> {
     return this.http.put<R>(this.baseUrl + relativeUrl, data);
   }
+  protected patch<T = {}, R = {}>(relativeUrl: string, data: T): Observable<R> {
+    return this.http.patch<R>(this.baseUrl + relativeUrl, data);
+  }
 }

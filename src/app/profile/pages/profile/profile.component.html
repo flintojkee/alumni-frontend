@@ -1,4 +1,42 @@
-<alm-alumni-profile [alumni]="user"></alm-alumni-profile>
-<a [routerLink]="['/profile/edit']">
-  <button mat-button>Редагувати</button>
-</a>
+<div class="profile">
+  <alm-personal-data-form
+    [editable]="editable"
+    (inittedFormGroup)="setPersonalDataFormGroup($event)"
+    #personalDataFormGroup
+    [user]="user"
+  ></alm-personal-data-form>
+  <alm-education-form
+    (inittedFormGroup)="setEducationFormGroup($event)"
+    #educationalFormGroup
+    [editable]="editable"
+    [user]="user"
+  ></alm-education-form>
+  <alm-job-form
+    [editable]="editable"
+    #jobFormGroup
+    (inittedFormGroup)="setJobFormGroup($event)"
+    [user]="user"
+  >
+  </alm-job-form>
+  <div class="fw">
+    <div>
+      <button mat-raised-button color="danger" (click)="disableEditable()" *ngIf="editable">
+        Відмінити
+      </button>
+      <button mat-raised-button color="primary" (click)="enableEditable()" *ngIf="!editable">
+        Редагувати
+      </button>
+    </div>
+    <div>
+      <button
+        [disabled]="isLoading"
+        mat-raised-button
+        color="primary"
+        (click)="sendUserForm()"
+        *ngIf="editable"
+      >
+        Відправити на оновлення
+      </button>
+    </div>
+  </div>
+</div>

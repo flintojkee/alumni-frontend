@@ -15,12 +15,13 @@ export enum AdminUrls {
   updateForm = 'update_form/',
   saveForm = 'update_form/{id}',
   updateFormStatus = 'update_form/{id}/status',
-  confirmForm = 'update_form/{id}/confirm'
+  confirmForm = 'update_form/{id}/confirm',
+  deleteAlumni = 'alumni/{alumni_id}'
 }
 
 export enum ProfileUrls {
   updateForm = 'update_form/',
-  updateFormHistory = '/update_form/history/{id}',
+  updateFormHistory = 'update_form/history/{id}',
   updateFormById = 'update_form/{id}'
 }
 

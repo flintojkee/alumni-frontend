@@ -43,9 +43,14 @@ export class AdminService extends RestService {
     limit?: number;
     filter?: AlumniFilterForm;
   }) {
+    console.log(filter);
     return this.get<Alumni[]>(
       this.alumniUrl.alumniRegistered + '?' + this.getQuery({ ...filter, offset, limit })
     );
+  }
+
+  deletAlumni(alumniId: number) {
+    return this.delete(decodeURI(this.adminUrl.deleteAlumni.replace('{alumni_id}', `${alumniId}`)));
   }
 
   getAlumniInviteStatus() {
@@ -70,6 +75,13 @@ export class AdminService extends RestService {
     );
   }
 
+  rejectUpdateForm({ form_id, operator_id }: { form_id: number; operator_id: number }) {
+    return this.patch<{ operator_id: number; form_status: 'rejected' }>(
+      this.adminUrl.updateFormStatus.replace('{id}', `${form_id}`),
+      { operator_id, form_status: 'rejected' }
+    );
+  }
+
   saveUpdateForm(form: UpdateFormConfirmRequest) {
     return this.put<UpdateFormConfirmRequest, UpdateFormConfirmRequest>(
       this.adminUrl.saveForm.replace('{id}', `${form.form_id}`),
@@ -79,7 +91,7 @@ export class AdminService extends RestService {
 
   getQuery(obj: any) {
     return Object.keys(obj).reduce(
-      (acc, cur) => (obj[cur] ? `${acc}&${cur}=${obj[cur]}` : acc),
+      (acc, cur) => (obj[cur] || obj[cur] === false ? `${acc}&${cur}=${obj[cur]}` : acc),
       ''
     );
   }

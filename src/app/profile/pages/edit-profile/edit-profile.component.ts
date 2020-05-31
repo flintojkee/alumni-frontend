@@ -34,7 +34,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       .createUpdateForm(form)
       .pipe(untilDestroyed(this))
       .subscribe((res) => {
-        this.companies = res;
         this.authService.setUser(res);
         this.router.navigateByUrl('/profile');
       });

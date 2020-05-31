@@ -33,7 +33,7 @@
     </div>
   </mat-card-header>
   <mat-card-actions>
-    <div class="alumni-card__actions" *ngIf="alumni.form_status !== 'approved'">
+    <div class="alumni-card__actions" *ngIf="alumni.form_status === 'new'">
       <a [routerLink]="[alumni.form_id]">
         <button mat-raised-button color="secondary">
           Перевірити

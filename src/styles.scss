@@ -108,6 +108,10 @@ body {
       margin-right: 15px;
     }
   }
+  .mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after,
+  .mat-input-element:disabled {
+    color: #000;
+  }
 }
 
 mat-form-field {

@@ -37,17 +37,14 @@ export class AlumniRegisteredComponent implements OnInit, OnDestroy {
   filter$ = new BehaviorSubject<AlumniFilterForm>(new AlumniFilterForm());
   dataSource: AlumniRegisteredDataSource;
 
-  constructor(public adminService: AdminService) {
-  }
+  constructor(public adminService: AdminService) {}
 
   ngOnInit() {
     this.filter$
       .asObservable()
       .pipe(untilDestroyed(this))
       .subscribe((res) => {
-        console.log(res);
         this.dataSource = new AlumniRegisteredDataSource(this.adminService, this.filter$.value);
-        console.log( this.dataSource);
       });
   }
 
@@ -56,5 +53,13 @@ export class AlumniRegisteredComponent implements OnInit, OnDestroy {
   filterChange(form: AlumniFilterForm) {
     this.filter$.next(form);
   }
-}
 
+  deleteAlumni(alumniId: number) {
+    this.adminService
+      .deletAlumni(alumniId)
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
+        this.dataSource = new AlumniRegisteredDataSource(this.adminService, this.filter$.value);
+      });
+  }
+}

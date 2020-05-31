@@ -5,15 +5,18 @@
       <alm-personal-data-form
         (inittedFormGroup)="setPersonalDataFormGroup($event)"
         #personalDataFormGroup
+        [editable]="true"
         [user]="updateAlumni"
       ></alm-personal-data-form>
       <alm-education-form
         (inittedFormGroup)="setEducationFormGroup($event)"
         #educationalFormGroup
+        [editable]="true"
         [user]="updateAlumni"
       ></alm-education-form>
       <alm-job-form
         [isAdmin]="true"
+        [editable]="true"
         (inittedFormGroup)="setJobFormGroup($event)"
         [user]="updateAlumni"
       >
@@ -34,7 +37,7 @@
             <a [routerLink]="['alumni-update-requests']">
               <button mat-button (click)="goBack()">Пізніше</button>
             </a>
-            <button mat-raised-button color="warn">Відхилити</button>
+            <button (click)="rejectForm()" mat-raised-button color="warn">Відхилити</button>
             <button
               [disabled]="formGroup.invalid && formGroup.dirty"
               mat-raised-button

@@ -4,7 +4,8 @@ import {
   ChangeDetectionStrategy,
   Input,
   Output,
-  EventEmitter
+  EventEmitter,
+  OnChanges
 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Alumni } from '../../models';
@@ -15,8 +16,9 @@ import { Countries } from '../../helpers/countries';
   templateUrl: './personal-data-form.component.html',
   styleUrls: ['./personal-data-form.component.scss']
 })
-export class PersonalDataFormComponent implements OnInit {
+export class PersonalDataFormComponent implements OnInit, OnChanges {
   @Input() user: Alumni;
+  @Input() editable: boolean;
   @Output() inittedFormGroup = new EventEmitter<FormGroup>();
   formGroup: FormGroup;
   countries = Countries;
@@ -31,6 +33,11 @@ export class PersonalDataFormComponent implements OnInit {
     }
 
     this.initFormGroup();
+    this.toggleFormGroup();
+  }
+
+  ngOnChanges() {
+    this.toggleFormGroup();
   }
 
   initFormGroup() {
@@ -124,5 +131,12 @@ export class PersonalDataFormComponent implements OnInit {
   filterBirthDate = (d: Date | null): boolean => {
     const currentYear = new Date().getFullYear();
     return currentYear - d.getFullYear() > 16;
-  };
+  }
+
+  toggleFormGroup() {
+    if (this.formGroup) {
+      console.log(this.editable);
+      this.editable ? this.formGroup.enable() : this.formGroup.disable();
+    }
+  }
 }

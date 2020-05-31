@@ -5,10 +5,11 @@ import {
   Input,
   Output,
   EventEmitter,
-  OnDestroy
+  OnDestroy,
+  OnChanges
 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { map, startWith } from 'rxjs/operators';
+import { map, startWith, filter } from 'rxjs/operators';
 import { Company, Alumni } from '../..';
 import { Observable } from 'rxjs';
 import { CompanyService } from '@alm/app/core/services/company.service';
@@ -19,15 +20,15 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
   templateUrl: './job-form.component.html',
   styleUrls: ['./job-form.component.scss']
 })
-export class JobFormComponent implements OnInit, OnDestroy {
-  companies: Company[];
+export class JobFormComponent implements OnInit, OnDestroy, OnChanges {
+  companies: Company[] = [];
   @Input() user: Alumni;
-  @Input() isAdmin: boolean;
+  @Input() isAdmin = false;
   @Output() inittedFormGroup = new EventEmitter<FormGroup>();
   filteredCompanies: Observable<Company[]>;
   formGroup: FormGroup;
   isCompanyError: boolean;
-
+  @Input() editable: boolean;
   constructor(private formBuilder: FormBuilder, private companyService: CompanyService) {}
 
   ngOnInit() {
@@ -43,7 +44,7 @@ export class JobFormComponent implements OnInit, OnDestroy {
       map((value: string) => this._filter(value))
     );
 
-    this.jobName.valueChanges.subscribe((res) => {
+    this.jobName.valueChanges.pipe(filter((val) => !!val)).subscribe((res) => {
       const c = this.companies.find((c) => c.name === res);
       const jobId = c ? c.id : -1;
       this.jobId.setValue(jobId);
@@ -56,15 +57,22 @@ export class JobFormComponent implements OnInit, OnDestroy {
         this.isCompanyError = false;
       }
     });
+    this.toggleFormGroup();
+  }
+
+  ngOnChanges() {
+    this.toggleFormGroup();
   }
 
   ngOnDestroy() {}
 
   private _filter(value: string): Company[] {
-    const filterValue = value.toLowerCase();
-    return this.companies.filter(
-      (company) => company.name.toLowerCase().indexOf(filterValue) === 0
-    );
+    if (value) {
+      const filterValue = value.toLowerCase();
+      return this.companies.filter(
+        (company) => company.name.toLowerCase().indexOf(filterValue) === 0
+      );
+    }
   }
 
   initJobFormGroup() {
@@ -83,5 +91,11 @@ export class JobFormComponent implements OnInit, OnDestroy {
   }
   get jobId() {
     return this.formGroup.controls.jobId;
+  }
+
+  toggleFormGroup() {
+    if (this.formGroup) {
+      this.editable ? this.formGroup.enable() : this.formGroup.disable();
+    }
   }
 }
