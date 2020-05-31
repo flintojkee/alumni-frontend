@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
+  isLoading: boolean;
   constructor(
     private authFormService: AuthFormService,
     private authService: AuthService,
@@ -24,11 +25,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnDestroy() {}
 
   login(loginForm: LoginForm) {
+    this.isLoading = true;
     this.authService
       .login(loginForm)
       .pipe(untilDestroyed(this))
       .subscribe((res) => {
         console.log(res);
+        this.isLoading = false;
         this.authService.setUser(res.alumni[0]);
         this.router.navigate(['profile']);
       });

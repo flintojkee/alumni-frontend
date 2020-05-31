@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { BaseFormComponent } from '@alm/app/shared/utils/base-form';
 import { LoginForm, IFormComponent, SignUpForm, formProperties } from '@alm/app/shared/models/forms';
 import { AbstractControl } from '@angular/forms';
@@ -13,6 +13,7 @@ export class FormLoginComponent extends BaseFormComponent<LoginForm>
 implements OnInit, IFormComponent<LoginForm>, formProperties<LoginForm> {
 email: AbstractControl;
 password: AbstractControl;
+@Input() isLoading: boolean;
 constructor() {
   super();
 }
