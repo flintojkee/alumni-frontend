@@ -25,7 +25,7 @@
         <div class="fw">
           <div>
             <button
-              [disabled]="formGroup.invalid && formGroup.dirty"
+              [disabled]="formGroup.invalid"
               mat-raised-button
               color="primary"
               (click)="saveForm()"
@@ -39,7 +39,7 @@
             </a>
             <button (click)="rejectForm()" mat-raised-button color="warn">Відхилити</button>
             <button
-              [disabled]="formGroup.invalid && formGroup.dirty"
+              [disabled]="formGroup.invalid || !isFormSaved"
               mat-raised-button
               color="primary"
               (click)="confirmForm()"

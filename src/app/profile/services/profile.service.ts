@@ -14,4 +14,5 @@ export class ProfileService extends RestService {
   createUpdateForm(form: UpdateFormRequest) {
     return this.post<UpdateFormRequest, any>(this.profileUrl.updateForm, form);
   }
+
 }

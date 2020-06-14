@@ -10,6 +10,8 @@ import {
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Alumni } from '../../models';
 import { Countries } from '../../helpers/countries';
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
 
 @Component({
   selector: 'alm-personal-data-form',
@@ -22,7 +24,7 @@ export class PersonalDataFormComponent implements OnInit, OnChanges {
   @Output() inittedFormGroup = new EventEmitter<FormGroup>();
   formGroup: FormGroup;
   countries = Countries;
-
+  filteredCountries: Observable<any[]>;
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
@@ -34,6 +36,10 @@ export class PersonalDataFormComponent implements OnInit, OnChanges {
 
     this.initFormGroup();
     this.toggleFormGroup();
+    this.filteredCountries = this.country.valueChanges.pipe(
+      startWith(''),
+      map((value) => this.countryFilter(value))
+    );
   }
 
   ngOnChanges() {
@@ -131,12 +137,17 @@ export class PersonalDataFormComponent implements OnInit, OnChanges {
   filterBirthDate = (d: Date | null): boolean => {
     const currentYear = new Date().getFullYear();
     return currentYear - d.getFullYear() > 16;
-  }
+  };
 
   toggleFormGroup() {
     if (this.formGroup) {
       console.log(this.editable);
       this.editable ? this.formGroup.enable() : this.formGroup.disable();
     }
+  }
+  private countryFilter(value: string): any[] {
+    const filterValue = value.toLowerCase();
+
+    return this.countries.filter((country) => country.name.toLowerCase().includes(filterValue));
   }
 }

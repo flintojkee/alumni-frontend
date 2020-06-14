@@ -41,7 +41,7 @@ export class EducationFormComponent implements OnInit, OnChanges {
 
   initFormGroup() {
     this.formGroup = this.formBuilder.group({
-      diplomaNaukma: [''],
+      diplomaNaukma: [this.user.diploma_naukma],
       bachelor: [],
       bachelorFaculty: [this.user.bachelor_faculty || null],
       bachelorSpeciality: [this.user.bachelor_speciality || null],

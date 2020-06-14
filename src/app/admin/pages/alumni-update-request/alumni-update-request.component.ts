@@ -27,6 +27,7 @@ export class AlumniUpdateRequestComponent implements OnInit, OnDestroy {
   @ViewChild('jobFormComponent', { static: false, read: JobFormComponent })
   jobFormComponent: JobFormComponent;
   formId: number;
+  isFormSaved = true;
   constructor(
     private updateRequestsService: UpdateRequestsService,
     private route: ActivatedRoute,
@@ -54,10 +55,13 @@ export class AlumniUpdateRequestComponent implements OnInit, OnDestroy {
           this.router.navigate(['admin', 'alumni-update-requests']);
         }
         this.updateAlumni = res;
-        console.log(this.updateAlumni);
+        console.log(console.log(this.formGroup));
       });
     this.authService.user$.pipe(untilDestroyed(this)).subscribe((res: Operator) => {
       this.user = res;
+    });
+    this.formGroup.valueChanges.subscribe((r) => {
+      this.isFormSaved = false;
     });
   }
   ngOnDestroy() {}
@@ -116,10 +120,12 @@ export class AlumniUpdateRequestComponent implements OnInit, OnDestroy {
   saveForm() {
     // console.log(this.formGroup);
     const dateOfBirth = this.formatDate(this.personalFormGroupControls.dateOfBirth.value);
+    const regex = new RegExp(`^data:image(.)*base64,`);
+    const image_1920 = this.updateAlumni.image_1920.toString().replace(regex, '');
     const updateAlumni = new UpdateAlumni(
       this.personalFormGroupControls.fullName.value,
       dateOfBirth,
-      this.updateAlumni.image_1920.toString().replace('data:image/png;base64,', ''),
+      image_1920,
       this.personalFormGroupControls.country.value,
       this.personalFormGroupControls.city.value,
       this.personalFormGroupControls.mobile.value,
@@ -164,7 +170,8 @@ export class AlumniUpdateRequestComponent implements OnInit, OnDestroy {
         })
         .pipe(untilDestroyed(this))
         .subscribe((res) => {
-          console.log(res);
+          console.log(this.formGroup);
+          this.isFormSaved = true;
         });
     } else {
       this.formGroup.markAllAsTouched();

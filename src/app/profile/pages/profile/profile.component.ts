@@ -79,6 +79,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
         }
       }
       this.isLoading = true;
+      const updatedUser = { ...this.user, ...updateAlumni };
+      this.authService.setUser(updatedUser);
       this.profileService
         .createUpdateForm(updateAlumni)
         .pipe(
@@ -100,10 +102,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   getUpdateForm() {
     const dateOfBirth = this.formatDate(this.personalDataFormComponent.dateOfBirth.value);
+    const regex = new RegExp(`^data:image(.)*base64,`);
+    const image_1920 = this.user.image_1920.toString().replace(regex, '');
     return new UpdateAlumni(
       this.personalDataFormComponent.fullName.value,
       dateOfBirth,
-      this.user.image_1920.toString().replace('data:image/png;base64,', ''),
+      image_1920,
       this.personalDataFormComponent.country.value,
       this.personalDataFormComponent.city.value,
       this.personalDataFormComponent.mobile.value,

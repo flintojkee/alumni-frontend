@@ -34,4 +34,5 @@ export interface Alumni {
   user_confirmed: boolean;
   allow_show_contacts: boolean;
   alumni_status?: InviteStatus;
+  company_name?: string;
 }

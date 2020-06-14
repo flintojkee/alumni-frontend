@@ -38,25 +38,28 @@ export class JobFormComponent implements OnInit, OnDestroy, OnChanges {
       .pipe(untilDestroyed(this))
       .subscribe((res) => {
         this.companies = res;
+        this.jobName.valueChanges.pipe(filter((val) => !!val)).subscribe((res) => {
+          const c = this.companies.find((c) => c.name === res);
+          const jobId = c ? c.id : -1;
+          this.jobId.setValue(jobId);
+
+          if (jobId === -1 && this.isAdmin) {
+            this.jobId.setValidators(Validators.min(0));
+            this.jobId.updateValueAndValidity();
+            this.isCompanyError = true;
+          } else {
+            this.jobId.setValidators([]);
+            this.jobId.updateValueAndValidity();
+            this.isCompanyError = false;
+          }
+        });
+        this.user.company_name && this.jobName.setValue(this.user.company_name);
       });
     this.filteredCompanies = this.formGroup.controls.jobName.valueChanges.pipe(
       startWith(''),
       map((value: string) => this._filter(value))
     );
 
-    this.jobName.valueChanges.pipe(filter((val) => !!val)).subscribe((res) => {
-      const c = this.companies.find((c) => c.name === res);
-      const jobId = c ? c.id : -1;
-      this.jobId.setValue(jobId);
-
-      if (jobId === -1 && this.isAdmin) {
-        this.jobId.setValidators(Validators.min(0));
-        this.isCompanyError = true;
-      } else {
-        this.jobId.setValidators([]);
-        this.isCompanyError = false;
-      }
-    });
     this.toggleFormGroup();
   }
 
