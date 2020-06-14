@@ -13,6 +13,7 @@ export class ProfileStepperComponent implements OnInit {
   @Input() user: Alumni;
   @Output() updatedUser = new EventEmitter<UpdateAlumni>();
   formGroup: FormGroup;
+  editable = true;
   constructor(private formBuilder: FormBuilder) {}
   ngOnInit() {
     this.formGroup = this.formBuilder.group({

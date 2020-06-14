@@ -15,12 +15,12 @@ export class FormFilterService {
     const validators: fieldsValidators<AlumniFilterForm> = {
       bachelor_faculty: [],
       bachelor_speciality: [],
-      bachelor_entry_year: [],
-      bachelor_finish_year: [],
+      bachelor_year_in: [],
+      bachelor_year_out: [],
       master_faculty: [],
       master_speciality: [],
-      master_entry_year: [],
-      master_finish_year: [],
+      master_year_in: [],
+      master_year_out: [],
       invite_status: [],
       user_confirmed: []
     };

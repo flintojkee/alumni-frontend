@@ -27,12 +27,12 @@ export class FormAlumniFilterComponent extends BaseFormComponent<AlumniFilterFor
   @Input() userConfirmed = false;
   bachelor_faculty: AbstractControl;
   bachelor_speciality: AbstractControl;
-  bachelor_entry_year: AbstractControl;
-  bachelor_finish_year: AbstractControl;
+  bachelor_year_in: AbstractControl;
+  bachelor_year_out: AbstractControl;
   master_faculty: AbstractControl;
   master_speciality: AbstractControl;
-  master_entry_year: AbstractControl;
-  master_finish_year: AbstractControl;
+  master_year_in: AbstractControl;
+  master_year_out: AbstractControl;
   invite_status: AbstractControl;
   user_confirmed: AbstractControl;
   specialityList = SpecialityList;

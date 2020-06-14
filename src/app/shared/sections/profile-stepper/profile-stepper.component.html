@@ -2,6 +2,7 @@
   <mat-step [stepControl]="formGroup?.controls?.personal" class="step">
     <ng-template matStepLabel>Персональні дані</ng-template>
     <alm-personal-data-form
+      [editable]="editable"
       (inittedFormGroup)="setPersonalDataFormGroup($event)"
       #personalDataFormGroup
       [user]="user"
@@ -21,6 +22,7 @@
   <mat-step [stepControl]="formGroup?.controls?.education" class="step">
     <ng-template matStepLabel>Дані про освіту</ng-template>
     <alm-education-form
+      [editable]="editable"
       (inittedFormGroup)="setEducationFormGroup($event)"
       #educationalFormGroup
       [user]="user"
@@ -42,7 +44,11 @@
   </mat-step>
   <mat-step [stepControl]="formGroup?.controls?.job" class="step">
     <ng-template matStepLabel>Робота</ng-template>
-    <alm-job-form [user]="user" (inittedFormGroup)="setJobFormGroup($event)"></alm-job-form>
+    <alm-job-form
+      [editable]="editable"
+      [user]="user"
+      (inittedFormGroup)="setJobFormGroup($event)"
+    ></alm-job-form>
     <div>
       <button class="form__button" color="primary" mat-flat-button matStepperPrevious>
         Назад
