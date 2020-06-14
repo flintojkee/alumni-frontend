@@ -10,8 +10,8 @@ import { FormGroup } from '@angular/forms';
 import { EducationFormComponent } from '@alm/app/shared/sections/education-form/education-form.component';
 import { PersonalDataFormComponent } from '@alm/app/shared/sections/personal-data-form/personal-data-form.component';
 import { JobFormComponent } from '@alm/app/shared/sections/job-form/job-form.component';
-import { catchError } from 'rxjs/operators';
-import { EMPTY } from 'rxjs';
+import { catchError, shareReplay } from 'rxjs/operators';
+import { EMPTY, Observable } from 'rxjs';
 
 @Component({
   selector: 'alm-profile',
@@ -30,6 +30,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   jobFormComponent: JobFormComponent;
   editable = false;
   isLoading = false;
+  isActiveUpdateFormExists: boolean;
   constructor(
     private authService: AuthService,
     private profileService: ProfileService,
@@ -39,7 +40,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.authService.user$.pipe(untilDestroyed(this)).subscribe((res) => {
       this.user = res as Alumni;
-      console.log(res);
+      this.profileService.getAlumniUpdateFormExists(this.user.alumni_id).subscribe((r) => {
+        this.isActiveUpdateFormExists = r;
+      });
     });
   }
 
@@ -93,6 +96,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         .subscribe((res) => {
           console.log(res);
           this.isLoading = false;
+          this.isActiveUpdateFormExists = true;
         });
     } else {
       this.formGroup.markAllAsTouched();

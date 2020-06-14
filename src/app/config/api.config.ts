@@ -5,7 +5,8 @@ export enum AlumniUrls {
   alumniRegistered = 'alumni/registered',
   register = 'register/',
   confirm = 'confirm/',
-  login = 'login/'
+  login = 'login/',
+  activeUpdateFormExists = 'alumni/{alumni_id}/active_update_form_exists'
 }
 
 export enum AdminUrls {

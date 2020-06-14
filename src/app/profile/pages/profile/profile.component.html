@@ -18,25 +18,30 @@
     [user]="user"
   >
   </alm-job-form>
-  <div class="fw">
-    <div>
-      <button mat-raised-button color="danger" (click)="disableEditable()" *ngIf="editable">
-        Відмінити
-      </button>
-      <button mat-raised-button color="primary" (click)="enableEditable()" *ngIf="!editable">
-        Редагувати
-      </button>
-    </div>
-    <div>
-      <button
-        [disabled]="isLoading"
-        mat-raised-button
-        color="primary"
-        (click)="sendUserForm()"
-        *ngIf="editable"
-      >
-        Відправити на оновлення
-      </button>
-    </div>
+  <div *ngIf="isActiveUpdateFormExists; else edit">
+    Форма оновлення збережена та знаходиться на опрацюванні
   </div>
+  <ng-template #edit>
+    <div class="fw">
+      <div>
+        <button mat-raised-button color="danger" (click)="disableEditable()" *ngIf="editable">
+          Відмінити
+        </button>
+        <button mat-raised-button color="primary" (click)="enableEditable()" *ngIf="!editable">
+          Редагувати
+        </button>
+      </div>
+      <div>
+        <button
+          [disabled]="isLoading"
+          mat-raised-button
+          color="primary"
+          (click)="sendUserForm()"
+          *ngIf="editable"
+        >
+          Відправити на оновлення
+        </button>
+      </div>
+    </div>
+  </ng-template>
 </div>

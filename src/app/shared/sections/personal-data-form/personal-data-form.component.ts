@@ -44,6 +44,11 @@ export class PersonalDataFormComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.toggleFormGroup();
+    if (this.user.image_1920) {
+      this.user.image_1920 = !this.user.image_1920.includes('data:image')
+        ? 'data:image/png;base64,' + this.user.image_1920
+        : this.user.image_1920;
+    }
   }
 
   initFormGroup() {
