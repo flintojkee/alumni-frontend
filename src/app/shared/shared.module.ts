@@ -1,52 +1,124 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AlumniCardComponent } from './sections/alumni-card/alumni-card.component';
-import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InfiniteScrollComponent } from './sections/infinite-scroll/infinite-scroll.component';
-import { RouterModule } from '@angular/router';
-import { FormAlumniFilterComponent } from './sections/form-alumni-filter/form-alumni-filter.component';
-import { FilterAlumniComponent } from './sections/filter-alumni/filter-alumni.component';
-import { DirectivesModule } from './directives';
-import { SafeHtmlPipe } from './pipes/safe-html.pipe';
-import { UdpateProfileCardComponent } from './sections/udpate-profile-card/udpate-profile-card.component';
-import { ProfileStepperComponent } from './sections/profile-stepper/profile-stepper.component';
-import { EducationFormComponent } from './sections/education-form/education-form.component';
-import { PersonalDataFormComponent } from './sections/personal-data-form/personal-data-form.component';
-import { JobFormComponent } from './sections/job-form/job-form.component';
-import { AlumniProfileComponent } from './sections/alumni-profile/alumni-profile.component';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
+import {
+  FontAwesomeModule,
+  FaIconLibrary
+} from '@fortawesome/angular-fontawesome';
+import {
+  faPlus,
+  faEdit,
+  faTrash,
+  faTimes,
+  faCaretUp,
+  faCaretDown,
+  faExclamationTriangle,
+  faFilter,
+  faTasks,
+  faCheck,
+  faSquare,
+  faLanguage,
+  faPaintBrush,
+  faLightbulb,
+  faWindowMaximize,
+  faStream,
+  faBook
+} from '@fortawesome/free-solid-svg-icons';
+import { faMediumM, faGithub } from '@fortawesome/free-brands-svg-icons';
 
 @NgModule({
-  declarations: [
-    AlumniCardComponent,
-    InfiniteScrollComponent,
-    FormAlumniFilterComponent,
-    FilterAlumniComponent,
-    SafeHtmlPipe,
-    UdpateProfileCardComponent,
-    ProfileStepperComponent,
-    EducationFormComponent,
-    PersonalDataFormComponent,
-    JobFormComponent,
-    AlumniProfileComponent
+  imports: [
+    CommonModule,
+    FormsModule,
+
+    MatButtonModule,
+    MatSelectModule,
+    MatTabsModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MatChipsModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatListModule,
+    MatMenuModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatSnackBarModule,
+    MatSlideToggleModule,
+    MatDividerModule,
+
+    FontAwesomeModule
   ],
-  imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule, RouterModule, DirectivesModule],
+  declarations: [],
   exports: [
-    AlumniCardComponent,
-    MaterialModule,
+    CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    InfiniteScrollComponent,
-    FormAlumniFilterComponent,
-    FilterAlumniComponent,
-    DirectivesModule,
-    SafeHtmlPipe,
-    UdpateProfileCardComponent,
-    ProfileStepperComponent,
-    EducationFormComponent,
-    PersonalDataFormComponent,
-    JobFormComponent,
-    AlumniProfileComponent
+
+    MatButtonModule,
+    MatMenuModule,
+    MatTabsModule,
+    MatChipsModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MatCheckboxModule,
+    MatCardModule,
+    MatListModule,
+    MatSelectModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatSnackBarModule,
+    MatSlideToggleModule,
+    MatDividerModule,
+    MatSliderModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+
+    FontAwesomeModule
   ]
 })
-export class SharedModule {}
+export class SharedModule {
+  constructor(faIconLibrary: FaIconLibrary) {
+    faIconLibrary.addIcons(
+      faGithub,
+      faMediumM,
+      faPlus,
+      faEdit,
+      faTrash,
+      faTimes,
+      faCaretUp,
+      faCaretDown,
+      faExclamationTriangle,
+      faFilter,
+      faTasks,
+      faCheck,
+      faSquare,
+      faLanguage,
+      faPaintBrush,
+      faLightbulb,
+      faWindowMaximize,
+      faStream,
+      faBook
+    );
+  }
+}

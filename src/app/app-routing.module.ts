@@ -1,32 +1,25 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {
-  SignUpComponent,
-  ConfirmComponent,
-  LoginComponent,
-  LoginAdminComponent
-} from './auth/pages';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 const routes: Routes = [
-  { path: 'sign-up/:token', component: SignUpComponent },
-  { path: 'confirm/:uuid', component: ConfirmComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'login-admin', component: LoginAdminComponent },
   {
-    path: 'profile',
-    loadChildren: () => import('./profile/profile.module').then((m) => m.ProfileModule)
+    path: '',
+    pathMatch: 'full'
   },
   {
-    path: 'alumni',
-    loadChildren: () => import('./alumni/alumni.module').then((m) => m.AlumniModule)
-  },
-
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule) },
-  { path: '', pathMatch: 'full', redirectTo: 'login' }
+    path: '**'
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  // useHash supports github.io demo page, remove in your app
+  imports: [
+    RouterModule.forRoot(routes, {
+      useHash: true,
+      scrollPositionRestoration: 'enabled',
+      preloadingStrategy: PreloadAllModules
+    })
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
